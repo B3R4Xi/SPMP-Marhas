@@ -1,4 +1,5 @@
 @extends('_component.master_apps')
+@section('title', 'Dashboard')
 @section('content')    
 <div class="container-fluid">
     <div class="row">
