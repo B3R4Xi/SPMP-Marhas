@@ -7,9 +7,9 @@
         <div class="card card-stats">
           <div class="card-header card-header-warning card-header-icon">
             <div class="card-icon">
-              <i class="material-icons">content_copy</i>
+              <i class="material-icons">book</i>
             </div>
-            <p class="card-category">Used Space</p>
+            <p class="card-category">Mata Pelajaran</p>
             <h3 class="card-title">49/50
               <small>GB</small>
             </h3>
@@ -74,13 +74,13 @@
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <div class="card">
-          <div class="card-header card-header-warning">
+          <div class="card-header card-header-info">
             <h4 class="card-title">Employees Stats</h4>
             <p class="card-category">New employees on 15th September, 2016</p>
           </div>
           <div class="card-body table-responsive">
             <table class="table table-hover">
-              <thead class="text-warning">
+              <thead class="text-primary">
                 <th>ID</th>
                 <th>Name</th>
                 <th>Salary</th>

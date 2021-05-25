@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 mb-5">
-                    <a href="javascript:;" class="btn btn-primary float-right">Tambah Data Guru</a>
+                    <a href="javascript:;" class="btn btn-primary float-right" style="border-radius: 50%">Tambah Data Guru</a>
       </div>
       <div class="col-md-4">
         <div class="card card-profile">

@@ -157,7 +157,7 @@ sup {
 }
 
 a {
-  color: #9c27b0;
+  color: #3700ff;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -2871,7 +2871,7 @@ fieldset:disabled a.btn {
   color: #ffffff;
   background-color: #0c83e2;
   border-color: #0c7cd5;
-}
+} 
 
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3508,7 +3508,6 @@ fieldset:disabled a.btn {
   line-height: 1.5;
   border-radius: 0.3rem;
 }
-
 .btn-sm,
 .btn-group-sm>.btn {
   padding: 0.40625rem 1.25rem;
@@ -19752,5 +19751,4 @@ Copyright (c) 2015 Daniel Eden
     display: none !important;
   }
 }
-
 /*# sourceMappingURL=dashboard-free.css.map */

@@ -21,6 +21,14 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+Route::get('/daftarmapel', function () {
+    return view('daftar-mapel');
+});
+
 Route::get('/daftarguru', function () {
     return view('daftar-guru');
+});
+
+Route::get('/lab', function () {
+    return view('ruangan-lab');
 });

@@ -8,46 +8,46 @@
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item ">
+        <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
           <a class="nav-link" href="{{ url('/') }}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item {{ request()->is('daftarmapel') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/daftarmapel') }}">
+            <i class="material-icons">class</i>
+            <p>Mata Pelajaran</p>
+          </a>
+        </li>
+        <li class="nav-item {{ request()->is('daftarguru') ? 'active' : '' }}">
           <a class="nav-link" href="{{ url('/daftarguru') }}">
             <i class="material-icons">person</i>
             <p>Daftar Guru</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ asset('template/examples') }}/tables.html">
-            <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+        <li class="nav-item {{ request()->is('lab') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/lab') }}">
+            <i class="material-icons">location_city</i>
+            <p>Ruangan Lab</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ asset('template/examples') }}/typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
+        <li class="nav-item {{ request()->is('kelas') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/kelas') }}">
+            <i class="material-icons">school</i>
+            <p>Daftar Kelas</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ asset('template/examples') }}/icons.html">
-            <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
+        <li class="nav-item {{ request()->is('waktu') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/waktu') }}">
+            <i class="material-icons">schedule</i>
+            <p>Waktu</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ asset('template/examples') }}/map.html">
-            <i class="material-icons">location_ons</i>
-            <p>Maps</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="{{ asset('template/examples') }}/notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
+        <li class="nav-item {{ request()->is('generatejadwal') ? 'active' : '' }}">
+          <a class="nav-link" href="{{ url('/generatejadwal') }}">
+            <i class="material-icons">today</i>
+            <p>Generate Jadwal</p>
           </a>
         </li>
       </ul>
