@@ -1,6 +1,6 @@
 @extends('_component.master_apps')
 @section('title', 'Profil')
-@section('content')    
+@section('content')
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">

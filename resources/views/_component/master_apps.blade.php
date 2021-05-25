@@ -34,7 +34,7 @@
       {{-- footer --}}
     @include('_component.footer')
     </div>
-  </div>    
+  </div>
   {{-- plugin-sidebar --}}
     @include('_component.fixed_plugins')
   <!--   Core JS Files   -->
