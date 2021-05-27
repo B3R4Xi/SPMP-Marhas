@@ -8,4 +8,5 @@
         <a href="https://github.com/B3R4Xi" target="_blank">Skripsi Informatika </a>.
       </div>
     </div>
-  </footer>
+</footer>
+

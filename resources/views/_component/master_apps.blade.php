@@ -16,8 +16,6 @@
   <!-- CSS Files -->
   <link href="{{ asset('template') }}/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   {{-- CDN js --}}
-  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 </head>
 
 <body class="">

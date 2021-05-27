@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DaftarMapelController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DaftarGuruController;
+use App\Http\Controllers\TambahDataMapelController;
+use App\Http\Controllers\LabController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,22 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-Route::get('/daftarmapel', function () {
-    return view('daftar-mapel');
-});
-
-Route::get('/daftarguru', function () {
-    return view('daftar-guru');
-});
-
-Route::get('/lab', function () {
-    return view('ruangan-lab');
-});
+Route::get('/',[HomeController::class,'index']);
+Route::get('/daftarmapel',[DaftarMapelController::class,'index']);
+Route::get('/profile',[ProfileController::class,'index']);
+Route::get('/daftarguru',[DaftarGuruController::class,'index']);
+Route::get('/tambahDataMapel',[TambahDataMapelController::class,'index']);
+Route::get('/lab',[LabController::class,'index']);
