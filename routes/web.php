@@ -5,9 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DaftarMapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarGuruController;
-use App\Http\Controllers\TambahDataMapelController;
 use App\Http\Controllers\LabController;
-
+use App\Models\DaftarMapelModel;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +22,24 @@ use App\Http\Controllers\LabController;
 
 Route::get('/',[HomeController::class,'index']);
 Route::get('/daftarmapel',[DaftarMapelController::class,'index']);
+
+// insert data mapel
+Route::get('/daftarmapel/add',[DaftarMapelController::class,'add']);
+Route::post('/daftarmapel/insert',[DaftarMapelController::class,'insert']);
+
+//delete data mapel
+// Route::post('/daftarmapel/delete/{id}',[DaftarMapelController::class,'delete'])->name('admin.delete');
+
+//update data mapel
+// Route::match(['get', 'post'],'/daftarmapel/edit/{id_mapel}',[DaftarMapelController::class,'edit']);
+
+// Route by tsungtsung
+Route::get('/daftarmapel/delete/{id_mapel}',[DaftarMapelModel::class,'delete'])->name('admin.delete');
+// Route::post('/daftarmapel/update'.[DaftarMapelModel::class,'update'])->name('admin.update');
+Route::get('/daftarmapel/{$id_mapel}',[DaftarMapelController::class,'getMapelData']);
+
+
+
+Route::get('/lab',[LabController::class,'index']);
 Route::get('/profile',[ProfileController::class,'index']);
 Route::get('/daftarguru',[DaftarGuruController::class,'index']);
-Route::get('/tambahDataMapel',[TambahDataMapelController::class,'index']);
-Route::get('/lab',[LabController::class,'index']);

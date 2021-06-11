@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('template') }}/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-  {{-- CDN js --}}
+  {{-- CDN bt --}}
 </head>
 
 <body class="">
@@ -36,7 +36,7 @@
   </div>
   {{-- plugin-sidebar --}}
   <!--   Core JS Files   -->
-    @include('_component.core_js');
+    @include('_component.core_js')
 </body>
 
 </html>

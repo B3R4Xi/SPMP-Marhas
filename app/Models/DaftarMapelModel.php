@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class DaftarMapelModel extends Model
 {
-    public function allData()
-    {
-        return DB::table('tbl_mapel')->get();
-    }
+    protected $table='tbl_mapel';
+    protected $primaryKey = 'id_mapel';
+
+    protected $fillable =
+    [
+        'kode_mapel', 'nama_mapel', 'tingkat_mapel'
+    ];
 }
