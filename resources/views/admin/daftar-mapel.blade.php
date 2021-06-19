@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     @if (session('success'))
-    <div class="container">
+    <div class="container" style="overflow-x: auto;">
         <div class="alert alert-success">
             {{ session('success') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,6 +25,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 @if (session('success-update'))
+
                 <div class="container">
                     <div class="alert alert-success">
                         {{ session('success-update') }}
@@ -51,22 +52,24 @@
                             <td class="nama_mapel">{{ $data->nama_mapel }}</td>
                             <td class="tingkat_mapel">{{ $data->tingkat_mapel }}</td>
                             <td class="text-center">
+                                <form action="{{ route('admin.delete',$data->id_mapel) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{ route('admin.edit', $data->id_mapel) }}"
+                                        class="btn btn-warning btn-fab btn-round">
+                                        <i class="material-icons" style="color: white">edit</i>
+                                    </a>
+                                    <a href="#" class="btn btn-info btn-fab btn-round" id="detail" data-toggle="modal"
+                                        data-target="#modal-detail" data-kode_mapel="{{ $data->kode_mapel }}"
+                                        data-nama_mapel="{{ $data->nama_mapel }}"
+                                        data-tingkat_mapel="{{  $data->tingkat_mapel }}">
+                                        <i class="material-icons">visibility</i></a>
 
-                                <a href="javascript:void(0)" onclick="editMapel({{$data->id_mapel}})"
-                                    class="btn btn-warning btn-fab btn-round edit" data-toggle="modal"
-                                    data-target="#update">
-                                    <i class="material-icons" style="color: white">edit</i>
-                                </a>
-                                <a href="#" class="btn btn-info btn-fab btn-round" id="detail" data-toggle="modal"
-                                    data-target="#modal-detail" data-kode_mapel="{{ $data->kode_mapel }}"
-                                    data-nama_mapel="{{ $data->nama_mapel }}"
-                                    data-tingkat_mapel="{{  $data->tingkat_mapel }}">
-                                    <i class="material-icons">visibility</i></a>
-                                <a href="/daftarmapel/delete/{{ $data->id_mapel }}"
-                                    onclick="return confirm('Beneran mau dihapus?')"
-                                    class="btn btn-danger btn-fab btn-round">
-                                    <i class="material-icons" style="color: white">delete</i>
-                                </a>
+                                    <button href="" onclick="return confirm('Beneran mau dihapus?')"
+                                        class="btn btn-danger btn-fab btn-round">
+                                        <i class="material-icons" style="color: white">delete</i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -76,8 +79,8 @@
         </div>
     </div>
 
-{{-- modal detail --}}
-<div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- modal detail --}}
+    <div class="modal fade" id="modal-detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -118,6 +121,7 @@
 </div>
 
 {{-- modal edit --}}
+@foreach ($mapel as $data)
 <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -127,15 +131,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST" id="editForm">
+            <form action{{ route('admin.edit',$data->id_mapel) }}="" method="POST" id="editForm">
                 @csrf
-                <input type="hidden" id="id_mapel" name="id_mapel"/>
+                <input type="hidden" id="id_mapel" name="id_mapel" />
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Kode Mata Pelajaran</label>
-                                <input class="form-control" id="kode_mapel2" type="text" />
+                                <input class="form-control" id="kode_mapel2" type="text"
+                                    value="{{ $data->kode_mapel }}" />
                             </div>
                         </div>
                     </div>
@@ -143,7 +148,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nama Mata Pelajaran</label>
-                                <input class="form-control" id="nama_mapel2" type="text" />
+                                <input class="form-control" id="nama_mapel2" type="text"
+                                    value="{{ $data->nama_mapel }}" />
                             </div>
                         </div>
                     </div>
@@ -151,7 +157,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Tingkat</label>
-                                <input class="form-control" id="tingkat_mapel2" type="text" />
+                                <input class="form-control" id="tingkat_mapel2" type="text"
+                                    value="{{ $data->tingkat_mapel}}" />
                             </div>
                         </div>
                     </div>
@@ -161,8 +168,9 @@
                     <button type="submit" class="btn btn-success" data-dismiss="modal">Update</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
-
+@endforeach
 @endsection

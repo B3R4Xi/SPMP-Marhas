@@ -49,15 +49,3 @@
     })
 </script>
 
-<script>
-  function editMapel(id_mapel) 
-  {
-      $.get('/daftarmapel/'+id_mapel,function(data) {
-          $("#id_mapel").val(data.id_mapel);
-          $("#kode_mapel2").val(data.kode_mapel2);
-          $("#nama_mapel2").val(data.nama_mapel2);
-          $("#tingkat_mapel2").val(data.tingkat_mapel2);
-          $("#update").modal('toggle');
-      })
-  }
-</script>
