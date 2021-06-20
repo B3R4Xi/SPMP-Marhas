@@ -4,7 +4,9 @@
 
       Tip 2: you can also add an image using data-image tag-->
     <div class="logo"><a href="{{ url('/') }}" class="simple-text logo-normal">
-        SPMP - Marhas
+      {{-- <span>SISTEM PENJADWALAN</span><br>   --}}
+      <span>SSS</span>
+      {{-- <img src="{{ asset('template') }}/assets/img/logo.png" style="width:180px" alt="">   --}}
       </a></div>
     <div class="sidebar-wrapper">
       <ul class="nav">

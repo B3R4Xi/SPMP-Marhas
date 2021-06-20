@@ -24,17 +24,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @if (session('success-update'))
-
-                <div class="container">
-                    <div class="alert alert-success">
-                        {{ session('success-update') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <i class="material-icons">close</i>
-                        </button>
-                    </div>
-                </div>
-                @endif
+                {{--  --}}
                 <table class="table text-center table-shopping">
                     <thead class=" text-primary">
                         <th>NO</th>

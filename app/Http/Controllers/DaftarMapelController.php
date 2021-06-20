@@ -58,7 +58,7 @@ class DaftarMapelController extends Controller
                 'tingkat_mapel.required' => 'Data wajib diisi!'
             ]);
             $test=DaftarMapelModel::find($id_mapel)->update(request()->all());
-            return redirect('/daftarmapel')->with('success-update','Update Berhasil !');
+            return redirect('/daftarmapel')->with('success','Update Berhasil !');
             
         }
 
