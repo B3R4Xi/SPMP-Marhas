@@ -12,7 +12,7 @@
                             <p class="card-category">Complete your profile</p>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
@@ -75,17 +75,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row form-group form-file-upload form-file-multiple">
+                                <div class="row">
+                                    <div class="col-md-12 form-group form-file-upload form-file-multiple">
                                         <input type="file" multiple="" class="inputFileHidden">
                                         <div class="input-group">
-                                            <input type="text" class="form-control form-file-upload inputFileVisible" placeholder="Single File">
+                                            <input type="text" class="form-control inputFileVisible" placeholder="Single File">
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-fab btn-round btn-primary">
                                                     <i class="material-icons">attach_file</i>
                                                 </button>
                                             </span>
                                         </div>
+                                      </div>
                                 </div>
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-raised">
+                                            <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow" alt="...">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
+                                        <div>
+                                            <span class="btn btn-raised btn-round btn-default btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="..." />
+                                            </span>
+                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
                                 <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                                 <div class="clearfix"></div>
                             </form>
