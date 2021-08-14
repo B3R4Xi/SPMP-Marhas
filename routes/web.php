@@ -6,6 +6,7 @@ use App\Http\Controllers\DaftarMapelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\LabController;
+use App\Http\Controllers\KelasController;
 use App\Models\DaftarMapelModel;
 use Illuminate\Support\Facades\URL;
 
@@ -26,8 +27,13 @@ Route::post('/daftarmapel/update/{id_mapel}', [DaftarMapelController::class,'upd
 //DELETE DATA MAPEL
 Route::delete('/daftarmapel/{id_mapel}',[DaftarMapelController::class,'delete'])->name('admin.delete');
 
-Route::get('/lab',[LabController::class,'index']);
-Route::get('/profile',[ProfileController::class,'index']);
-Route::get('/daftarguru',[GuruController::class,'index']);
 
-Route::resource('daftarguru', GuruController::class);
+Route::get('/profile',[ProfileController::class,'index']);
+
+
+//Resource Route
+
+//-------------------------------------------------------------//
+Route::resource('lab',LabController::class);
+Route::resource('daftarguru',GuruController::class);
+Route::resource('kelas',KelasController::class);

@@ -1,5 +1,5 @@
 @extends('_component.master_apps')
-@section('title', 'Tambah Data Mata Pelajaran')
+@section('title', 'Tambah Data Guru')
 @section('content')
 <div class="container-fluid">
     <div class="content">
@@ -8,101 +8,81 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Edit Profile</h4>
-                            <p class="card-category">Complete your profile</p>
+                            <h4 class="card-title">Tambah Data Guru</h4>
+                            <p class="card-category">Pastikan data yang diinputkan benar</p>
                         </div>
                         <div class="card-body">
-                            <form enctype="multipart/form-data">
+                            <form action="{{ route('daftarguru.store') }}" enctype="multipart/form-data" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Company (disabled)</label>
-                                            <input type="text" class="form-control" disabled>
+                                            <label class="bmd-label-floating">NIP</label>
+                                            <input type="text" class="form-control" name="nip" value="{{ old('nip')}}">
+                                            @if($errors->has('nip'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('nip') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Username</label>
-                                            <input type="text" class="form-control">
+                                            <label class="bmd-label-floating">Kode Guru</label>
+                                            <input type="text" class="form-control" name="kode_guru" value="{{old('kode_guru')}}">
+                                            @if($errors->has('kode_guru'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('kode_guru') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Email address</label>
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Fist Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Last Name</label>
-                                            <input type="text" class="form-control">
+                                            <label class="bmd-label-floating">Email</label>
+                                            <input type="email" class="form-control" name="email" value="{{old('email')}}">
+                                            @if($errors->has('email'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">Adress</label>
-                                            <input type="text" class="form-control">
+                                            <label class="bmd-label-floating">Nama Lengkap</label>
+                                            <input type="text" class="form-control" name="nama_lengkap" value="{{old('nama_lengkap')}}">
+                                            @if($errors->has('nama_lengkap'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('nama_lengkap') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">City</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Country</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="bmd-label-floating">Postal Code</label>
-                                            <input type="text" class="form-control">
+                                            <label class="bmd-label-floating">Alamat</label>
+                                            <input type="text" class="form-control" name="alamat" value="{{old('alamat')}}">
+                                            @if($errors->has('alamat'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('alamat') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 form-group form-file-upload form-file-multiple">
-                                        <input type="file" multiple="" class="inputFileHidden">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control inputFileVisible" placeholder="Single File">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-fab btn-round btn-primary">
-                                                    <i class="material-icons">attach_file</i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                      </div>
-                                </div>
-                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                        <div class="fileinput-new thumbnail img-raised">
-                                            <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" rel="nofollow" alt="...">
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                                        <div>
-                                            <span class="btn btn-raised btn-round btn-default btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="..." />
-                                            </span>
-                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Telepon</label>
+                                            <input type="text" class="form-control" name="no_hp" value="{{old('no_hp')}}">
+                                            @if($errors->has('no_hp'))
+                                                <span
+                                                    class="text-danger">{{ $errors->first('no_hp') }}</span>
+                                            @endif
                                         </div>
                                     </div>
-                                <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                                </div>
+                                <button type="submit" class="btn btn-info pull-right">Tambah Profile Guru</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

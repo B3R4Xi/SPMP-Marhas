@@ -1,23 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\DaftarMapelModel;
 
+use App\Models\DaftarMapelModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DaftarMapelController extends Controller
 {
     public function index()
     {
-        $data=DaftarMapelModel::all();
-        return view('admin.daftar-mapel', ['mapel'=>$data]);
+        // $data=DaftarMapelModel::all();
+        $data=  DB::table('tbl_mapel')->paginate(4);
+        return view('admin.mapel.daftar-mapel', ['mapel'=>$data]);
     }
 
 
     // INSERT FUNCTION
         public function add()
         {
-            return view('admin.tambahDataMapel');
+            return view('admin.mapel.tambahDataMapel');
         }
 
         public function insert(Request $request)
@@ -43,7 +45,7 @@ class DaftarMapelController extends Controller
         public function edit($id_mapel)
         {
             $mapel=DaftarMapelModel::where('id_mapel', $id_mapel)->get();
-            return view('admin.updateDataMapel',['mapel'=>$mapel]);
+            return view('admin.mapel.updateDataMapel',['mapel'=>$mapel]);
         }
 
         public function update($id_mapel)
@@ -57,7 +59,7 @@ class DaftarMapelController extends Controller
                 'nama_mapel.required' => 'Data wajib diisi!',
                 'tingkat_mapel.required' => 'Data wajib diisi!'
             ]);
-            $test=DaftarMapelModel::find($id_mapel)->update(request()->all());
+            $mapel=DaftarMapelModel::find($id_mapel)->update(request()->all());
             return redirect('/daftarmapel')->with('success','Update Berhasil !');
             
         }

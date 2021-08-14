@@ -37,6 +37,8 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{ asset('template') }}/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <script>
+
+    //DOM untuk PAGE MAPEL
     $(document).ready(function () {
         $(document).on('click', '#detail', function () {
             var kodemapel = $(this).data('kode_mapel');
@@ -47,5 +49,47 @@
             $('#tingkat_mapel').text(tingkatmapel);
         })
     })
+
+    //DOM untuk PAGE GURU
+    $(document).ready(function () {
+        $(document).on('click', '#detail2', function () {
+            var nip = $(this).data('nip');
+            var kodeguru = $(this).data('kode_guru');
+            var namalengkap = $(this).data('nama_lengkap');
+            var nohp = $(this).data('no_hp');
+            var email = $(this).data('email');
+            var alamat = $(this).data('alamat');
+            $('#nip').text(nip);
+            $('#kode_guru').text(kodeguru);
+            $('#nama_lengkap').text(namalengkap);
+            $('#no_hp').text(nohp);
+            $('#email').text(email);
+            $('#alamat').text(alamat);
+        })
+    })
+
+
+    //DOM untuk PAGE LAB
+    $(document).ready(function () {
+        $(document).on('click', '#detail', function () {
+            var kodelab = $(this).data('kode_lab');
+            var namalab = $(this).data('nama_lab');
+            var kapasitas = $(this).data('kapasitas');
+            $('#kode_lab').text(kodelab);
+            $('#nama_lab').text(namalab);
+            $('#kapasitas').text(kapasitas);
+        })
+    })
+
+
+    $(function() {
+        $("select").each(function (index, element) {
+                    const val = $(this).data('value');
+                    if(val !== '') {
+                        $(this).val(val);
+                    }
+            });
+    })
+
 </script>
 
