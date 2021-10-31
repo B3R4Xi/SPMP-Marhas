@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Tingkat_Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +17,10 @@ class KelasController extends Controller
     public function index()
     {
         //
-        $data = DB::table('tbl_kelas')->paginate(4);
-        return view('admin.kelas.daftarKelas',['kelas'=>$data]);
+        // $data = DB::table('tbl_kelas')->paginate(4);
+        $kelas = Kelas::orderBy('kode_kelas');
+        $kelas = $kelas->paginate(5);
+        return view('admin.kelas.daftarKelas',compact('kelas'));
         
     }
 
@@ -29,7 +32,8 @@ class KelasController extends Controller
     public function create()
     {
         //
-        return view('admin.kelas.tambahDataKelas');
+        $tingkat_mapel  =   Tingkat_Mapel::orderBy('tingkat_mapel', 'asc')->pluck('tingkat_mapel', 'id');
+        return view('admin.kelas.tambahDataKelas', compact('tingkat_mapel'));
     }
 
     /**
@@ -42,7 +46,7 @@ class KelasController extends Controller
     {
         //
         $request->validate([
-            'kode_kelas' => 'required|unique:tbl_kelas',
+            'kode_kelas' => 'required',
             'nama_kelas' => 'required',
         ]);
 
@@ -74,6 +78,10 @@ class KelasController extends Controller
     public function edit($id)
     {
         //
+        $kelas=Kelas::where('id',$id)->get();
+        $tingkat_mapel = Tingkat_Mapel::get();
+        
+        return view('admin.kelas.updateDataKelas',compact('kelas','tingkat_mapel'));  
     }
 
     /**
@@ -86,6 +94,15 @@ class KelasController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'kode_kelas'=>'required',
+            'nama_kelas'=>'required',
+        ],[
+            'kode_kelas.required' => 'Data wajib diisi!',
+            'nama_kelas.required' => 'Data wajib diisi!',
+        ]);
+        $kelas=Kelas::find($id)->update(request()->all());
+        return redirect()->route('kelas.index')->with('success','Update Berhasil !');
     }
 
     /**
@@ -97,5 +114,7 @@ class KelasController extends Controller
     public function destroy($id)
     {
         //
+        Kelas::find($id)->delete();
+        return redirect()->route('kelas.index')->with('success','Waktu berhasil dihapus');
     }
 }

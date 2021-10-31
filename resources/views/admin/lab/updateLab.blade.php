@@ -2,18 +2,18 @@
 @section('title', 'Update Data Laboratorium')
 @section('content')
 <div class="container-fluid">
-    <div class="card">
+    <div class="card col-md-8">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Update Data Laboratorium</h4>
+            <h4 class="card-title">Update Data Ruangan Laboratorium</h4>
             <small class="card-category ">Pastikan semua data tersisi dengan benar</small>
         </div>
         @foreach($lab as $data)
             <div class="card-body">
-                <form action="{{route('lab.update',$data->id)}}" method="POST">
+                <form action="{{ route('lab.update',$data->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <div class="row mb-2">
-                        <div class="col-md-12">
+                    <div class="row mb-2 mt-4">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Kode Mata Pelajaran</label>
                                 <input class="form-control" name="kode_lab" id="kode_lab" type="text"
@@ -24,9 +24,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nama Mata Pelajaran</label>
                                 <input class="form-control" name="nama_lab" id="nama_lab" type="text"
@@ -37,11 +35,9 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Telepon</label>
+                                <label class="bmd-label-floating">Kapasitas</label>
                                 <input type="text" class="form-control" name="kapasitas"
                                     value="{{ $data->kapasitas }}">
                                 @if($errors->has('kapasitas'))
@@ -51,8 +47,27 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success pull-right">
-                        <i class="material-icons">save</i> Update</button>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="select-label">Jenis Ruangan Lab</label>
+                                <select class="select-text form-control" name="jenis_lab_id">
+                                    <option value="" disabled selected>Jenis Ruangan Lab</option>
+                                    @foreach($jenis_lab as $jl)
+                                        <option value="{{ $jl->id }}"
+                                            {{ $jl->id == $data->jenis_lab_id ? 'selected' : '' }}>
+                                            {{ $jl->jenis_mapel }}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('jenis_lab_id'))
+                                    <span
+                                        class="text-danger">{{ $errors->first('jenis_lab_id') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-success pull-right">
+                            <i class="material-icons">save</i> Update</button>
                 </form>
             </div>
         @endforeach

@@ -1,26 +1,26 @@
 @extends('_component.master_apps')
-@section('title', 'Update Data Kelas')
+@section('title', 'Update Data hari')
 @section('content')
 <div class="container-fluid">
     <div class="card">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Update Data Kelas</h4>
+            <h4 class="card-title">Update Data hari</h4>
             <small class="card-category ">Pastikan semua data tersisi dengan benar</small>
         </div>
-        @foreach($lab as $data)
+        @foreach($hari as $data)
             <div class="card-body">
-                <form action="{{route('lab.update',$data->id)}}" method="POST">
+                <form action="{{route('hari.update',$data->id)}}" method="POST">
                     @csrf
-                    @method('PATCH')
+                    @method('PUT')
                     <div class="row mb-2">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Kode Mata Pelajaran</label>
-                                <input class="form-control" name="kode_lab" id="kode_lab" type="text"
-                                    value="{{ $data->kode_lab }}">
-                                @if($errors->has('kode_lab'))
+                                <label class="bmd-label-floating">Kode hari</label>
+                                <input class="form-control" name="kode_hari" id="kode_hari" type="text"
+                                    value="{{ $data->kode_hari }}">
+                                @if($errors->has('kode_hari'))
                                     <span
-                                        class="text-danger">{{ $errors->first('kode_lab') }}</span>
+                                        class="text-danger">{{ $errors->first('kode_hari') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -28,25 +28,12 @@
                     <div class="row mb-2">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Nama Mata Pelajaran</label>
-                                <input class="form-control" name="nama_lab" id="nama_lab" type="text"
-                                    value="{{ $data->nama_lab }}">
-                                @if($errors->has('nama_lab'))
+                                <label class="bmd-label-floating">Nama Hari</label>
+                                <input class="form-control" name="nama_hari" id="nama_hari" type="text"
+                                    value="{{ $data->nama_hari }}">
+                                @if($errors->has('nama_hari'))
                                     <span
-                                        class="text-danger">{{ $errors->first('nama_lab') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Telepon</label>
-                                <input type="text" class="form-control" name="kapasitas"
-                                    value="{{ $data->kapasitas }}">
-                                @if($errors->has('kapasitas'))
-                                    <span
-                                        class="text-danger">{{ $errors->first('kapasitas') }}</span>
+                                        class="text-danger">{{ $errors->first('nama_hari') }}</span>
                                 @endif
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenis_Mapel;
 use App\Models\Lab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,8 +11,8 @@ class LabController extends Controller
 {
     public function index()
     {
-        $data=  DB::table('tbl_lab')->paginate(4);
-        return view('admin.lab.ruanganlab', ['lab'=>$data]);
+        $lab=  Lab::orderBy('id')->paginate(4);
+        return view('admin.lab.ruanganlab', compact('lab'));
     }
 
         /**
@@ -21,7 +22,8 @@ class LabController extends Controller
      */
     public function create()
     {
-        return view('admin.lab.tambahDataLab');
+        $jenis_lab = Jenis_Mapel::orderBy('jenis_mapel', 'asc')->pluck('jenis_mapel','id');
+        return view('admin.lab.tambahDataLab', compact('jenis_lab'));
     }
 
     /**
@@ -36,16 +38,19 @@ class LabController extends Controller
                 'kode_lab' => 'required|unique:tbl_lab|max:255',
                 'nama_lab' => 'required',
                 'kapasitas'=> 'required|numeric',
+                'jenis_lab'=> 'required',
             ],[
                 'kode_lab.required' => 'Data wajib diisi!',
                 'nama_lab.required' => 'Data wajib diisi!',
-                'kapasitas.required' => 'Data wajib diisi!'
+                'kapasitas.required' => 'Data wajib diisi!',
+                'jenis_lab.required'=> 'Data wajib diisi!',
             ]);
 
             $lab = new Lab();
             $lab->kode_lab=$request->kode_lab;
             $lab->nama_lab=$request->nama_lab;
             $lab->kapasitas=$request->kapasitas;
+            $lab->jenis_lab_id=$request->jenis_lab;
             $lab->save();
             return redirect()->route('lab.index')->with('success',"Data berhasil ditambahkan !")
             ->with('failed','Gagal gan !');
@@ -61,7 +66,6 @@ class LabController extends Controller
     public function show($id)
     {
         //
-        return view('admin.guru.updateDataGuru',compact(''));
     }
 
     /**
@@ -74,7 +78,8 @@ class LabController extends Controller
     {
                 //
                 $lab=Lab::where('id', $id)->get();
-                return view('admin.lab.updateLab',compact('lab'));
+                $jenis_lab = Jenis_Mapel::get();
+                return view('admin.lab.updateLab',compact('lab','jenis_lab'));
     }
 
     /**
@@ -90,16 +95,19 @@ class LabController extends Controller
             'kode_lab' => 'required',
             'nama_lab' => 'required',
             'kapasitas'=> 'required|numeric',
+            'jenis_lab_id'=> 'required',
         ],[
             'kode_lab.required' => 'Data wajib diisi!',
             'nama_lab.required' => 'Data wajib diisi!',
-            'kapasitas.required' => 'Data wajib diisi!'
+            'kapasitas.required' => 'Data wajib diisi!',
+            'jenis_lab_id.required'=> 'Data wajib diisi!',
         ]);
 
         $lab = new Lab();
         $lab->kode_lab=$request->kode_lab;
         $lab->nama_lab=$request->nama_lab;
         $lab->kapasitas=$request->kapasitas;
+        $lab->jenis_lab_id=$request->jenis_lab_id;
         $lab=Lab::find($id)->update(request()->all());
         return redirect()->route('lab.index')->with('success','Update Berhasil !');
     }

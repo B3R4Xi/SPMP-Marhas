@@ -15,4 +15,9 @@ class Kelas extends Model
         'kode_kelas',
         'nama_kelas'
     ];
+
+    public function tingkatkelas()
+    {
+        return $this->belongsTo(Tingkat_Mapel::class, 'kode_kelas');
+    }
 }

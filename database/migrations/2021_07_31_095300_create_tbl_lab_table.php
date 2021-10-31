@@ -18,8 +18,12 @@ class CreateTblLabTable extends Migration
             $table->string('kode_lab');
             $table->string('nama_lab');
             $table->integer('kapasitas');
+            $table->integer('jenis_lab_id')->unsigned()->nullable();
             $table->timestamps();
+            
+            $table->foreign('jenis_lab_id')->references('id')->on('tbl_jenis_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
+
     }
 
     /**

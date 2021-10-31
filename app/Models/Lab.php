@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lab extends Model
 {
-    use HasFactory;
     protected $table='tbl_lab';
 
-    protected $fillable =
-    [
-        'kode_lab',
-        'nama_lab',
-        'kapasitas'
-    ];
+    protected $guarded =[];
 
+
+    public function jenislab()
+    {
+        return $this->belongsTo(Jenis_Mapel::class,'jenis_lab_id');
+    }
 }

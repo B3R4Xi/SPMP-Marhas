@@ -15452,7 +15452,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
-  font-size: 13px;
+  font-size: 14px;
   padding: 10px 15px;
 }
 
@@ -19862,5 +19862,15 @@ Copyright (c) 2015 Daniel Eden
     display: none !important;
   }
 }
+
+  .ahref{
+    color:blue ;
+  }
+  .ahref:hover{
+    color:grey ;
+  }
+
+
+  
 
 /*# sourceMappingURL=dashboard-free.css.map */

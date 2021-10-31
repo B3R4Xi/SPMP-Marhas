@@ -36,7 +36,7 @@
                         @foreach($kelas as $data)
                             <tr id="sid{{ $data->id }}">
                                 <td>{{($kelas->currentPage() - 1) * $kelas->perPage() + $loop->iteration}}</td>
-                                <td class="kode_lab">{{ $data->kode_kelas }}</td>
+                                <td class="kode_lab">{{ $data->tingkatkelas->tingkat_mapel }}</td>
                                 <td class="nama_lab">{{ $data->nama_kelas }}</td>
                                 <td class="text-center">
                                     <form action="{{ route('kelas.destroy',$data->id) }}"
@@ -47,7 +47,7 @@
                                             class="btn btn-warning btn-fab btn-round">
                                             <i class="material-icons" style="color: white">edit</i>
                                         </a>
-                                        <a href="#" class="btn btn-info btn-fab btn-round" id="detail"
+                                        <a href="#" class="btn btn-info btn-fab btn-round" id="detail4"
                                             data-toggle="modal" data-target="#modal-detail"
                                             data-kode_kelas="{{ $data->kode_kelas }}"
                                             data-nama_kelas="{{ $data->nama_kelas }}">

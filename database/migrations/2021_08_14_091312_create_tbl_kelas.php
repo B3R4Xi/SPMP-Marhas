@@ -15,10 +15,14 @@ class CreateTblKelas extends Migration
     {
         Schema::create('tbl_kelas', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_kelas');
+            $table->integer('kode_kelas')->unsigned()->nullable();
             $table->string('nama_kelas');
             $table->timestamps();
-        });
+      
+
+            $table->foreign('kode_kelas')->references('id')->on('tbl_tingkat')->onUpdate('CASCADE')->onDelete('CASCADE');
+
+    });
     }
 
     /**

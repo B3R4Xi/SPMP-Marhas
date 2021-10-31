@@ -13,6 +13,7 @@
             
         </div>
     @endif
+    
     <div class="float-right mb-5">
         <a href="/daftarmapel/add" class="btn btn-success btn-lg btn-fab btn-round">
             <i class="material-icons">add</i>
@@ -31,6 +32,9 @@
                         <th>Kode Mapel</th>
                         <th>Nama Mata Pelajaran</th>
                         <th>Tingkat</th>
+                        <th>Semester</th>
+                        <th>Jumlah Jam Mapel</th>
+                        <th>Jenis</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -40,7 +44,10 @@
                                 <td>{{($mapel->currentPage() - 1) * $mapel->perPage() + $loop->iteration}}</td>
                                 <td class="kode_mapel">{{ $data->kode_mapel }}</td>
                                 <td class="nama_mapel">{{ $data->nama_mapel }}</td>
-                                <td class="tingkat_mapel">{{ $data->tingkat_mapel }}</td>
+                                <td class="tingkat_mapel">{{ $data->tingkatmapel->tingkat_mapel }}</td>
+                                <td class="tingkat_mapel">{{ $data->semester->semester }}</td>
+                                <td class="tingkat_mapel">{{ $data->jumlah_jam }}</td>
+                                <td class="tingkat_mapel">{{ $data->jenismapel->jenis_mapel }}</td>
                                 <td class="text-center">
                                     <form action="{{ route('admin.delete',$data->id_mapel) }}"
                                         method="POST">

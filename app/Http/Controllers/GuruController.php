@@ -13,9 +13,14 @@ class GuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data=  DB::table('tbl_guru')->paginate(3);
+        $data = Guru::orderBy('id');
+        if (!empty($request->search))
+        {
+            $data = $data->where('nama_lengkap', 'LIKE', '%' .$request->search. '%');
+        }
+        $data = $data->paginate(5);
         return view('admin.guru.daftarGuru', ['guru'=>$data]);
     }
 
@@ -67,7 +72,7 @@ class GuruController extends Controller
     public function show($id)
     {
         //
-        return view('admin.guru.updateDataGuru',compact(''));
+        return view('admin.guru.updateDataGuru');
     }
 
     /**

@@ -13,8 +13,13 @@
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Kode Ruangan Lab</label>
-                            <input class="form-control" name="kode_kelas" type="text">
+                            <label class="select-label">Kode Kelas</label>
+                                    <select class="select-text form-control" name="kode_kelas">
+                                        <option value="" disabled selected>Pilih tingkat</option>
+                                        @foreach ($tingkat_mapel as $tm => $data)
+                                        <option value="{{ $tm }}">{{ $data }}</option>
+                                        @endforeach
+                                    </select>
                             @if($errors->has('kode_kelas'))
                                 <span
                                     class="text-danger">{{ $errors->first('kode_kelas') }}</span>

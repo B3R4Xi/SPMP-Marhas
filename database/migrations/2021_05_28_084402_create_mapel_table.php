@@ -17,8 +17,17 @@ class CreateMapelTable extends Migration
             $table->id('id_mapel');
             $table->string('kode_mapel');
             $table->string('nama_mapel');
-            $table->string('tingkat_mapel');
+            $table->integer('tingkat_mapel_id')->unsigned()->nullable();
+            $table->integer('semester_id')->unsigned()->nullable();
+            $table->integer('jumlah_jam')->unsigned()->nullable();
+            $table->integer('jenis_mapel_id')->unsigned()->nullable();
             $table->timestamps();
+
+
+            $table->foreign('tingkat_mapel_id')->references('id')->on('tbl_tingkat')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('semester_id')->references('id')->on('tbl_semester')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('jenis_mapel_id')->references('id')->on('tbl_jenis_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
+
         });
     }
 

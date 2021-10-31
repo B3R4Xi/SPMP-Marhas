@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-info pull-right">Tambah Profile Guru</button>
+                                    <button type="submit" class="btn btn-info pull-right">Update Profile Guru</button>
                                     <div class="clearfix"></div>
                                 </form>
                         </div>

@@ -11,7 +11,7 @@
             <div class="card-body">
                 <form action="/daftarmapel/update/{{ $data->id_mapel }}" method="POST">
                     @csrf
-                    <div class="row mb-2">
+                    <div class="row mb-2 mt-2">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Kode Mata Pelajaran</label>
@@ -37,28 +37,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="row mt-2">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                {{-- <label class="bmd-label-floating">Tingkat</label>
-                                     <input  class="form-control" name="tingkat_mapel" type="text">
-                                      @if($errors->has('tingkat_mapel'))
-                                      <span class="text-danger">{{ $errors->first('tingkat_mapel') }}</span>
-                                      @endif--}}
-                                      <div class="select">
-                                        <select class="select-text" required name="tingkat_mapel">
-                                            <option value="X RPL">X RPL</option>
-                                            <option value="XI RPL">XI RPL</option>
-                                            <option value="XII RPL">XII RPL</option>
-                                        </select>
-                                        <span class="select-highlight"></span>
-                                        <span class="select-bar"></span>
-                                        <label class="select-label">Pilih Tingkat</label>
-                                    </div>
-                                    @if($errors->has('tingkat_mapel'))
+                                      <label class="select-label">Tingkat</label>
+                                    <select class="select-text form-control" name="tingkat_mapel_id">
+                                        <option value="" disabled selected>Pilih tingkat</option>
+                                        @foreach ($tingkat_mapel as $tm)
+                                        <option value="{{ $tm->id }}" {{ $tm->id == $data->tingkat_mapel_id ? 'selected' : '' }}>{{ $tm->tingkat_mapel }}</option>
+                                        @endforeach
+                                    </select>
+                                @if($errors->has('tingkat_mapel_id'))
+                                    <span
+                                        class="text-danger">{{ $errors->first('tingkat_mapel_id') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="select-label">Semester</label>
+                              <select class="select-text form-control" name="semester_id">
+                                  <option value="" disabled selected>Pilih Semester</option>
+                                  @foreach ($semester as $sm)
+                                  <option value="{{ $sm->id }}" {{ $sm->id == $data->semester_id ? 'selected' : '' }}>{{ $sm->semester }}</option>
+                                  @endforeach
+                              </select>
+                          @if($errors->has('semester_id'))
+                              <span
+                                  class="text-danger">{{ $errors->first('semester_id') }}</span>
+                          @endif
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                        <label class="bmd-label-floating">Jumlah Jam Mapel</label>
+                                        <input class="select-text form-control" required name="jumlah_jam" value="{{ $data->jumlah_jam }}">
+                                    @if($errors->has('jumlah_jam'))
                                         <span
-                                            class="text-danger">{{ $errors->first('tingkat_mapel') }}</span>
+                                            class="text-danger">{{ $errors->first('jumlah_jam') }}</span>
                                     @endif
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                      <label class="select-label">Tingkat</label>
+                                    <select class="select-text form-control" name="jenis_mapel_id">
+                                        <option value="" disabled selected>Pilih Jenis Mapel</option>
+                                        @foreach ($jenis_mapel as $jm)
+                                        <option value="{{ $jm->id }}" {{ $jm->id == $data->jenis_mapel_id ? 'selected' : '' }}>{{ $jm->jenis_mapel }}</option>
+                                        @endforeach
+                                    </select>
+                                @if($errors->has('jenis_mapel_id'))
+                                    <span
+                                        class="text-danger">{{ $errors->first('jenis_mapel_id') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>

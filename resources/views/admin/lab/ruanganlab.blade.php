@@ -1,5 +1,5 @@
 @extends('_component.master_apps')
-@section('title', 'Ruangan Laboratorium Praktikum')
+@section('title', 'Ruangan Laboratorium')
 @section('content')    
 <div class="container-fluid">
     @if(session('success'))
@@ -30,6 +30,7 @@
                         <th>Kode Lab</th>
                         <th>Nama Laboratorium</th>
                         <th>Kapasitas Ruangan</th>
+                        <th>Jenis Ruangan</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -40,6 +41,7 @@
                                 <td class="kode_lab">{{ $data->kode_lab }}</td>
                                 <td class="nama_lab">{{ $data->nama_lab }}</td>
                                 <td class="kapasitas">{{ $data->kapasitas }}</td>
+                                <td class="jenis_lab">{{ $data->jenislab->jenis_mapel }}</td>
                                 <td class="text-center">
                                     <form action="{{ route('lab.destroy',$data->id) }}"
                                         method="POST">
@@ -49,7 +51,7 @@
                                             class="btn btn-warning btn-fab btn-round">
                                             <i class="material-icons" style="color: white">edit</i>
                                         </a>
-                                        <a href="#" class="btn btn-info btn-fab btn-round" id="detail"
+                                        <a href="#" class="btn btn-info btn-fab btn-round" id="detail3"
                                             data-toggle="modal" data-target="#modal-detail"
                                             data-kode_lab="{{ $data->kode_lab }}"
                                             data-nama_lab="{{ $data->nama_lab }}"
