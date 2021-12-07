@@ -1,5 +1,5 @@
 @extends('_component.master_apps')
-@section('title', 'Algoritma Genetika - Generate')
+@section('title', 'Algoritma Genetika - Result')
 @section('content')    
 <div class="container-fluid">
     @if(session('success'))
@@ -24,34 +24,6 @@
     @endif
     <div class="card">
         <div class="card-body">
-            <div class="col-md-4" style="padding-bottom: 3%;">
-                <a class="btn btn-info btn-block" href="{{ route('admin.genetic.result', $id) }}">
-                    <span class="glyphicon glyphicon-download">
-                    </span>
-                    Export Excel Data Ini
-                </a>
-            </div>
-            <div class="col-md-4" style="padding-bottom: 3%;">
-                @if(!empty($data_kromosom))
-                    <select class="form-control select2" id="myAction">
-                    @foreach ($data_kromosom as $key => $kromosom)
-                        <option value="{{ $key+1 }}"
-                        @if ($id == ($key+1))
-                            selected="selected">
-                        @else
-                            >
-                        @endif
-                                @if ($kromosom['value_jadwals'] == 1)
-                                    Jadwal Terbaik
-                                @else
-                                    Jadwal {{ $key+1 }}
-                                @endif
-                        </li>
-                        </option>
-                    @endforeach
-                    </select>
-                @endif
-            </div>
             <div class="alert alert-success alert-dismissable">
                 <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
                     ×
@@ -69,6 +41,63 @@
                     <br>
                 </h4>
             </div>
+            <div class="row">
+                <div class="col-md-4" style="padding-bottom: 3%; padding-left:3%;">
+                    @if(!empty($data_kromosom))
+                        <label class="bmd-label-floating">Pilih Jadwal</label>
+                        <select class="form-control select2" id="myAction">
+                        @foreach ($data_kromosom as $key => $kromosom)
+                            <option value="{{ $key+1 }}"
+                            @if ($id == ($key+1))
+                                selected="selected">
+                            @else
+                                >
+                            @endif
+                                    @if ($kromosom['value_jadwals'] == 1)
+                                        Jadwal Terbaik
+                                    @else
+                                        Jadwal {{ $key+1 }}
+                                    @endif
+                            </li>
+                            </option>
+                        @endforeach
+                        </select>
+                    @endif
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="padding-bottom: 3%;">
+                    <label class="bmd-label-floating">Export Jadwal Berdasarkan Type</label>
+                    <a class="btn btn-info btn-sm" href="{{ route('admin.genetic.export', $id) }}">
+                        <i class="material-icons">
+                            file_download
+                        </i>
+                        Export Jadwal
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="{{ route('admin.genetic.exportPDF', $id) }}">
+                        <i class="material-icons">
+                            file_download
+                        </i>
+                        Export Jadwal PDF
+                    </a>
+                    <label class="bmd-label-floating">Export Jadwal Semua Jenis Jadwal</label>
+                    <a class="btn btn-info btn-sm" href="{{ route('admin.genetic.exportAll') }}">
+                        <i class="material-icons">
+                            file_download
+                        </i>
+                        Export Semua Jadwal
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="{{ route('admin.genetic.exportAllPDF') }}">
+                        <i class="material-icons">
+                            file_download
+                        </i>
+                        Export Semua Jadwal PDF
+                    </a>
+                </div>
+
+                <div class="col-md-4" style="padding-bottom: 3%;">
+                    
+                </div>
+            </div>
         </div>
     </div>
     <div class="card">
@@ -78,35 +107,10 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table text-center table-hover">
-                    <thead class=" text-primary">
-                        <th>No</th>
-                        <th>Guru</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Kelas</th>
-                        <th>Hari</th>
-                        <th>Waktu</th>
-                        <th>Ruangan</th>
-                    </thead>
-                    <tbody>
-                        <?php $no=1;?>
-                        @foreach($jadwals as $jd => $data)
-                            {{-- <tr id="sid{{ $data->id }}"> --}}
-                                <td>{{ $data->id }}</td>
-                                <td class="">{{ $data->teach->guru->nama_lengkap }}</td>
-                                <td class="">{{ $data->teach->mapel->nama_mapel }}</td>
-                                <td class="">{{ $data->teach->kelas->nama_kelas }}</td>
-                                {{-- <?php echo json_encode($data->kelas);exit;?> --}}
-                                <td class="">{{ $data->hari->nama_hari }}</td>
-                                <td class="">{{ $data->waktu->range }}</td>
-                                <td class="">{{ $data->lab->nama_lab }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            @include('admin.genetic.table_result', $jadwals)
             </div>
             <nav class="pagination justify-content-center">
-            {{$jadwals->links()}}
+                {{$jadwals->links()}}
             </nav>
         </div>
     </div>

@@ -18,6 +18,8 @@ class CreateTblHari extends Migration
             $table->string('kode_hari');
             $table->string('nama_hari');
             $table->timestamps();
+            // $table->foreign('id')->references('hari_id')
+            // ->on('tbl_timedays')->OnUpdate('CASCADE')->OnDelete('CASCADE');
         });
     }
 

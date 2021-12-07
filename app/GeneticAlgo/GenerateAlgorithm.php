@@ -40,7 +40,7 @@ class GenerateAlgorithm
                     ];
                     // echo $params;exit;
                     // dd($params);
-                    $jadwal = Jadwal::create($params);
+                    Jadwal::create($params);
                 }
                 $data[] = $values;
             }
@@ -60,7 +60,7 @@ class GenerateAlgorithm
             // dd($jadwals);
             
             $hasil_jadwals = $this->increaseProccess($jadwals);
-
+            // echo json_encode($jadwals);exit;
             $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, waktu_id, lab_id, type, count(*) as `jumlah`'))
             ->groupBy('teach_id')
             ->groupBy('hari_id')
@@ -94,7 +94,7 @@ class GenerateAlgorithm
 
             $hasil_jadwals = $this->increaseProccess($jadwals);
 
-            $jadwals = Jadwal::where('hari_id', Schedule::FRIDAY)->whereIn('waktu_id', [12,19,24])->get();
+            $jadwals = Jadwal::where('hari_id', Schedule::FRIDAY)->whereIn('waktu_id', [11])->get();
 
             if (!empty($jadwals)) 
             {
@@ -142,7 +142,7 @@ class GenerateAlgorithm
             return $jadwals;
         }
         
-        public function increaseProccess($jadwals = '')
+        public function increaseProccess($jadwals = [])
         {
             if (!empty($jadwals))
             {
@@ -154,7 +154,7 @@ class GenerateAlgorithm
                         foreach ( $jadwal_dimanas as $key => $jadwal_dimana)
                         {
                             $jadwal_dimana->value           = $jadwal_dimana->value + ($jadwal->jumlah - 1);
-                            $jadwal_dimana->value_process   = $jadwal_dimana->value_process . "+" . ($jadwal->jumlah -1);
+                            $jadwal_dimana->value_process   = $jadwal_dimana->value_process . "+" . ($jadwal->jumlah-1);
                             $jadwal_dimana->save();
                         }
                     }

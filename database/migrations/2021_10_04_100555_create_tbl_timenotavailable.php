@@ -15,14 +15,17 @@ class CreateTblTimenotavailable extends Migration
     {
         Schema::create('tbl_timenotavailable', function (Blueprint $table) {
             $table->id();
-            $table->integer('guru_id')->unsigned()->nullable();
-            $table->integer('hari_id')->unsigned()->nullable();
-            $table->integer('waktu_id')->unsigned()->nullable();
+            $table->bigInteger('guru_id')->unsigned()->nullable();
+            $table->bigInteger('hari_id')->unsigned()->nullable();
+            $table->bigInteger('waktu_id')->unsigned()->nullable();
             $table->timestamps();
 
-            $table->foreign('guru_id')->references('id')->on('tbl_guru')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign('hari_id')->references('id')->on('tbl_hari')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->foreign('waktu_id')->references('id')->on('tbl_hari')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('guru_id')->references('id')->on('tbl_guru')
+            ->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('hari_id')->references('id')->on('tbl_hari')
+            ->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('waktu_id')->references('id')->on('tbl_waktu')
+            ->onUpdate('CASCADE')->onDelete('CASCADE');
 
         });
     }

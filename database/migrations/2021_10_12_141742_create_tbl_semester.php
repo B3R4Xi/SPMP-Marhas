@@ -17,6 +17,8 @@ class CreateTblSemester extends Migration
             $table->id();
             $table->string('semester');
             $table->timestamps();
+            // $table->foreign('id')->references('semester_id')
+            // ->on('tbl_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

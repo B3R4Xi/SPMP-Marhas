@@ -19,8 +19,8 @@
         </div>
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title ">Mata Pelajaran</h4>
-                <p class="card-category"> Daftar Mata Pelajaran Produktif RPL</p>
+                <h4 class="card-title ">Daftar Guru</h4>
+                <p class="card-category"> Tenaga Pengajar RPL</p>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

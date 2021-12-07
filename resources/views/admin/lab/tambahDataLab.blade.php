@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="card col-md-8">
         <div class="card-header card-header-primary">
-            <h4 class="card-title">Tambah Data Mapel</h4>
+            <h4 class="card-title">Tambah Data Ruangan Lab</h4>
             <small class="card-category ">Pastikan semua data tersisi dengan benar</small>
         </div>
         <div class="card-body">

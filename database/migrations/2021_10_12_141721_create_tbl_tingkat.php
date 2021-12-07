@@ -17,6 +17,10 @@ class CreateTblTingkat extends Migration
             $table->id();
             $table->string('tingkat_mapel');
             $table->timestamps();
+            // $table->foreign('id')->references('tingkat_mapel_id')
+            // ->on('tbl_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
+            // $table->foreign('id')->references('kode_kelas')
+            // ->on('tbl_kelas')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

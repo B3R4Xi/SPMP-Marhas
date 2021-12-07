@@ -1,15 +1,15 @@
-<div class="sidebar" data-color="purple" data-background-color="white"
-    data-image="{{ asset('template') }}/assets/img/sidebar-1.jpg">
+<div class="sidebar" data-color="purple" data-background-color="white">
+    {{-- data-image="{{ asset('template') }}/assets/img/sidebar-4.jpg" --}}
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag-->
     <div class="logo">
-        {{-- <a href="{{ url('/') }}" class="simple-text logo-normal mt-0">
-        <span>SISTEM PENJADWALAN</span><br>
-        <img src="{{ asset('template') }}/assets/img/logo.png" style="width:150px" alt="">
-        </a> --}}
-        <h1 class="text-center"> <a href="{{ url('/') }}"> --- </a></h1>
+        <a href="{{ url('/') }}" class="simple-text logo-normal mt-0">
+        <img src="{{ asset('template') }}/assets/img/logo-marhas.png" style="width:75px" alt=""> <br>
+        <span>SISTEM PENJADWALAN</span>
+        </a>
+        {{-- <h1 class="text-center"> <a href="{{ url('/') }}"> --- </a></h1> --}}
     </div>
 
     <div class="sidebar-wrapper">
@@ -110,7 +110,7 @@
                         <i class="material-icons">integration_instructions</i>
                         Generate Jadwal
                     </a>
-                    <a class="dropdown-item" href="{{ url('/result') }}">
+                    <a class="dropdown-item" href="{{ url('/genetika/result/1') }}">
                         <i class="material-icons">schedule</i>
                         Jadwal Pelajaran
                     </a>

@@ -21,6 +21,8 @@ class CreateTblWaktu extends Migration
             $table->string('range');
             $table->integer('jumlah_jam');
             $table->timestamps();
+            // $table->foreign('id')->references('waktu_id')
+            // ->on('tbl_timedays')->OnUpdate('CASCADE')->OnDelete('CASCADE');
         });
     }
 

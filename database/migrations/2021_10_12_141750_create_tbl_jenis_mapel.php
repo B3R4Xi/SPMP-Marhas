@@ -17,6 +17,10 @@ class CreateTblJenisMapel extends Migration
             $table->id();
             $table->string('jenis_mapel');
             $table->timestamps();
+            // $table->foreign('id')->references('jenis_mapel_id')
+            // ->on('tbl_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
+            // $table->foreign('id')->references('jenis_lab_id')
+            // ->on('tbl_lab')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

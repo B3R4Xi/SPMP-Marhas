@@ -14,14 +14,17 @@ class CreateTblGuruTable extends Migration
     public function up()
     {
         Schema::create('tbl_guru', function (Blueprint $table) {
-            $table->id();
-            $table->integer('nip');
+            $table->BigIncrements('id');
+            $table->bigInteger('nip');
             $table->string('kode_guru');
             $table->string('nama_lengkap');
             $table->string('alamat');
             $table->string('no_hp');
             $table->string('email');
             $table->timestamps();
+            // $table->foreign('id')->references('id_guru')
+            // ->on('tbl_teach')->OnUpdate('CASECADE')->OnDelete('CASECADE');
+            
         });
     }
 

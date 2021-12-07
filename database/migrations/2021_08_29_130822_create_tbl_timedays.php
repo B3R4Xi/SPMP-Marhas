@@ -16,13 +16,15 @@ class CreateTblTimedays extends Migration
         Schema::create('tbl_timedays', function (Blueprint $table) {
             $table->id();
             $table->string('kode_timedays');
-            $table->integer('hari_id')->unsigned()->nullable();
-            $table->integer('waktu_id')->unsigned()->nullable();
+            $table->bigInteger('hari_id')->unsigned()->nullable();
+            $table->bigInteger('waktu_id')->unsigned()->nullable();
             $table->timestamps();
 
 
-            $table->foreign('hari_id')->references('id')->on('tbl_hari')->OnUpdate('CASCADE')->OnDelete('CASCADE');
-            $table->foreign('waktu_id')->references('id')->on('tbl_waktu')->OnUpdate('CASCADE')->OnDelete('CASCADE');
+            $table->foreign('hari_id')->references('id')
+            ->on('tbl_hari')->OnUpdate('CASCADE')->OnDelete('CASCADE');
+            $table->foreign('waktu_id')->references('id')
+            ->on('tbl_waktu')->OnUpdate('CASCADE')->OnDelete('CASCADE');
         });
     }
 

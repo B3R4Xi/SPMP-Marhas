@@ -106,7 +106,7 @@
             </form>
         </div>
     </div>
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header card-header-primary mt-4">
             <h4 class="card-title ">Jadwal Pelajaran</h4>
             <p class="card-category"> Hasil Generate Jadwal</p>
@@ -139,6 +139,6 @@
             {{-- {{$timedays->links()}} --}}
             </nav>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
