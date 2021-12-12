@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 
 class WaktuController extends Controller
 {
+    
+    public function __construct()
+    {
+     $this->middleware('admin')->only('delete');
+     $this->middleware('auth'); 
+    }
     /**
      * Display a listing of the resource.
      *

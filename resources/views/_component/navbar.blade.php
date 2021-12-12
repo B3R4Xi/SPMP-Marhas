@@ -21,18 +21,6 @@
         </form>
         <ul class="navbar-nav">   
           <li class="nav-item dropdown">
-            <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="material-icons">notifications</i>
-              <span class="notification">1</span>
-              <p class="d-lg-none d-md-block">
-                Some Actions
-              </p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Mike John responded to your email</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
             <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="material-icons">person</i>
               <p class="d-lg-none d-md-block">
@@ -40,12 +28,20 @@
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" href="{{ url('profile') }}">Profile</a>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="{{ url('profile') }}">Hi, {{ Auth::user()->name }}</a>
+              @if (Auth::user()->level_id === 1) 
+              <a class="dropdown-item" href="{{ url('management') }}">Managements</a>
+              @endif
               <div class="dropdown-divider"></div>
-              <form action="POST" action="{{ route('logout') }}">
-                <a class="dropdown-item" href="/logout">Log out</a>
-              </form>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
           </li>
         </ul>

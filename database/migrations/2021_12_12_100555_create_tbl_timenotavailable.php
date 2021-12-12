@@ -18,6 +18,7 @@ class CreateTblTimenotavailable extends Migration
             $table->bigInteger('guru_id')->unsigned()->nullable();
             $table->bigInteger('hari_id')->unsigned()->nullable();
             $table->bigInteger('waktu_id')->unsigned()->nullable();
+            $table->bigInteger('id_user')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('guru_id')->references('id')->on('tbl_guru')
@@ -26,7 +27,7 @@ class CreateTblTimenotavailable extends Migration
             ->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('waktu_id')->references('id')->on('tbl_waktu')
             ->onUpdate('CASCADE')->onDelete('CASCADE');
-
+            $table->foreign('id_user')->references('id')->on('tbl_users')->OnUpdate('CASECADE')->OnDelete('CASECADE');
         });
     }
 

@@ -30,4 +30,9 @@ class Teach extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_user');
+    }
 }

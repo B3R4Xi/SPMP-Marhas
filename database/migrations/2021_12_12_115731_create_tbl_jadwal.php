@@ -20,8 +20,8 @@ class CreateTblJadwal extends Migration
             $table->bigInteger('waktu_id')->unsigned();
             $table->bigInteger('lab_id')->unsigned();
             $table->integer('type');
-            $table->double('value');
-            $table->string('value_process');
+            $table->double('value')->nullable();
+            $table->string('value_process')->nullable();
             $table->timestamps();
 
             $table->foreign('teach_id')->references('id')->on('tbl_teach')

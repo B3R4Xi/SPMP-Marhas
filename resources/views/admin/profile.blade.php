@@ -1,5 +1,5 @@
 @extends('_component.master_apps')
-@section('title', 'Profil')
+@section('title', 'Profile')
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -7,17 +7,21 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="javascript:;">
-              <img class="img" src="{{ asset('template') }}/assets/img/faces/marc.jpg" />
+              <img class="img" src="{{ asset('template') }}/assets/img/new_logo.png" />
             </a>
           </div>
-          <div class="card-body">
-            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-            <h4 class="card-title">Alec Thompson</h4>
-            <p class="card-description">
-              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="javascript:;" class="btn btn-primary btn-round">Edit Profile</a>
-          </div>
+          @foreach ($users as $user => $dt)
+            @if ($dt->id == Auth::user()->id)    
+            <div class="card-body">
+              <h6 class="card-category text-gray">Role : {{ $dt->level->level }}</h6>
+              <h4 class="card-title">{{ $dt->name }}</h4>
+              <p class="card-description">
+                Email : {{ $dt->email }}
+              </p>
+              {{-- <a href="javascript:;" class="btn btn-primary btn-round">Edit Profile</a> --}}
+            </div>
+            @endif
+          @endforeach
         </div>
       </div>
     </div>

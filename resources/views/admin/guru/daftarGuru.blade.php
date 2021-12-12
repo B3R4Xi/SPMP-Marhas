@@ -42,6 +42,7 @@
                                     <td class="nama_lengkap">{{ $data->nama_lengkap }}</td>
                                     <td class="no_hp">{{ $data->no_hp }}</td>
                                     <td class="text-center">
+                                      @if (Auth::user()->level_id === 1)
                                         <form
                                             action="{{ route('daftarguru.destroy',$data->id) }}"
                                             method="POST">
@@ -51,6 +52,11 @@
                                                 class="btn btn-warning btn-fab btn-round">
                                                 <i class="material-icons" style="color: white">edit</i>
                                             </a>
+                                            <button href="" onclick="return confirm('Yakin Hapus Data?')"
+                                            class="btn btn-danger btn-fab btn-round">
+                                            <i class="material-icons" style="color: white">delete</i>
+                                            </button>
+                                      @elseif (Auth::user()->level_id === 2)
                                             <a href="#" class="btn btn-info btn-fab btn-round" id="detail2"
                                                 data-toggle="modal" data-target="#modal-detail"
                                                 data-nip="{{ $data->nip }}"
@@ -59,12 +65,9 @@
                                                 data-no_hp="{{ $data->no_hp }}"
                                                 data-email="{{ $data->email }}"
                                                 data-alamat="{{ $data->alamat }}">
-                                                <i class="material-icons">visibility</i></a>
-
-                                            <button href="" onclick="return confirm('Yakin Hapus Data?')"
-                                                class="btn btn-danger btn-fab btn-round">
-                                                <i class="material-icons" style="color: white">delete</i>
-                                            </button>
+                                              <i class="material-icons">visibility</i>
+                                            </a>
+                                      @endif
                                         </form>
                                     </td>
                                 </tr>

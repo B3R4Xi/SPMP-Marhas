@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class DaftarMapelController extends Controller
 {
+
+    public function __construct()
+    {
+     $this->middleware('admin')->only('delete');
+     $this->middleware('auth'); 
+    }
+
     public function index(Request $request)
     {
 

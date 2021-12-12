@@ -15,7 +15,7 @@
                         <div class="card-body">
                             <form action="{{ route('teach.update' ,$data->id) }}" enctype="multipart/form-data" method="post">
                                 @csrf
-                                @method('PATCH')
+                                @method('POST')
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">

@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CheckRole
+class Guru
 {
     /**
      * Handle an incoming request.
@@ -16,6 +17,12 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (Auth::check()) {
+            if (Auth::user()->level_id === 2) {
+                return $next($request);
+            }
+        }
+        // return view('admin.dashboard');
+        return abort(404);
     }
 }

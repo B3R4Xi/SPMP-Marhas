@@ -11,10 +11,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Tingkat_Mapel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TeachController extends Controller
 {
+    
+    public function __construct()
+    {
+     $this->middleware('admin')->only('delete');
+     $this->middleware('auth'); 
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,16 +29,20 @@ class TeachController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $teach  = Teach::whereHas('guru',function($query) use ($search)
-        {
-            if(!empty($search))
+            $search = $request->input('search');
+            $teach  = Teach::whereHas('guru',function($query) use ($search)
             {
-                $query = $query->where('tbl_guru.nama_lengkap', 'LIKE', '%' .$search. '%');
-            }
-        });
-        $teach  = $teach->paginate(5);
-        return view('admin.teach.daftarPengampu',compact('teach'));
+                if(!empty($search))
+                {
+                    $query = $query->where('tbl_guru.nama_lengkap', 'LIKE', '%' .$search. '%');
+                }
+            });
+            $teach  = $teach->paginate(5);
+        if (Auth::user()->level_id === 1) {
+            return view('admin.teach.daftarPengampu',compact('teach'));
+        } elseif (Auth::user()->level_id === 2) {
+            return view('guru.teach.G_daftarPengampu',compact('teach'));
+        }
     }
 
     /**
@@ -60,16 +71,16 @@ class TeachController extends Controller
     {
         //
         $request->validate([
-            'tm'       => 'required',
+            'tm'            => 'required',
             'mapel'         => 'required',
             'nama_guru'     => 'required',
-            'kelas_dept'         => 'required',
+            'kelas_dept'    => 'required',
             'tahun_ajaran'  => 'required',
         ],[
-            'tm.required' => 'Data wajib diisi!',  
+            'tm.required'            => 'Data wajib diisi!',  
             'mapel.required'         => 'Data wajib diisi!',
             'nama_guru.required'     => 'Data wajib diisi!',
-            'kelas_dept.required'         => 'Data wajib diisi!',   
+            'kelas_dept.required'    => 'Data wajib diisi!',   
             'tahun_ajaran.required'  => 'Data wajib diisi!',
         ]);
         $teach      = new Teach();
@@ -78,6 +89,8 @@ class TeachController extends Controller
         $teach->id_kelas=$request->kelas_dept;
         $teach->tahun_ajaran=$request->tahun_ajaran;
         $teach->id_tingkat=$request->tm;
+        $teach->id_user = Auth::user()->id;
+        // dd($teach);
         $teach->save();
 
         return redirect()->route('teach.index')->with('success', 'Tambah Data Pengampu Berhasil');

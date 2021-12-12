@@ -13,6 +13,8 @@
     </div>
 
     <div class="sidebar-wrapper">
+
+        @if (Auth::user()->level_id === 1)
         <ul class="nav">
             <li
                 class="nav-item {{ request()->is('/') ? 'active' : '' }}">
@@ -99,7 +101,7 @@
 
             {{-- GENERATE JADWAL DROPDOWN --}}
             <li
-                class="nav-item dropdown {{ request()->is('genetika', 'result') ? 'active' : '' }}">
+                class="nav-item dropdown {{ request()->is('genetika', 'genetika/result/1') ? 'active' : '' }}">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">today</i>
@@ -117,5 +119,49 @@
                 </div>
             </li>
         </ul>
+        @elseif (Auth::user()->level_id === 2)
+        <ul class="nav">
+           
+            {{-- GURU DROPDOWN --}}
+            <li
+                class="nav-item dropdown {{ request()->is('daftarguru','teach') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">person</i>
+                    Data Guru
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                    <a class="dropdown-item" href="{{ url('/daftarguru') }}">
+                        <i class="material-icons">person</i>
+                        Daftar Guru
+                    </a>
+                    <a class="dropdown-item" href="{{ url('/teach') }}">
+                        <i class="material-icons">mode_edit_outline</i>
+                        Daftar Pengampu
+                    </a>
+                    <a class="dropdown-item" href="{{ url('/timenotavailable') }}">
+                        <i class="material-icons">timer</i>
+                        Waktu Tidak Tersedia
+                    </a>
+                </div>
+            </li>
+
+            {{-- GENERATE JADWAL DROPDOWN --}}
+            <li
+                class="nav-item dropdown {{ request()->is('genetika', 'genetika/result/1') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">today</i>
+                    Jadwal
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                    <a class="dropdown-item" href="{{ url('/genetika/result/1') }}">
+                        <i class="material-icons">schedule</i>
+                        Jadwal Pelajaran
+                    </a>
+                </div>
+            </li>
+        </ul>
+        @endif
     </div>
 </div>

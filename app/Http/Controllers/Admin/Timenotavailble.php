@@ -9,9 +9,17 @@ use App\Models\Waktu;
 use App\Http\Controllers\Controller;
 use Facade\FlareClient\Time\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Timenotavailble extends Controller
 {
+    
+    public function __construct()
+    {
+     $this->middleware('admin')->only('delete');
+     $this->middleware('auth'); 
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +34,13 @@ class Timenotavailble extends Controller
                 $query = $query->where('tbl_guru.nama_lengkap', 'LIKE', '%' .$search. '%');
             }
         });
-        $timenotavailable = $timenotavailable->paginate(5);
-        return view('admin.timenotavailable.index', compact('timenotavailable'));
+        if (Auth::user()->level_id === 1) {
+            $timenotavailable = $timenotavailable->paginate(5);
+            return view('admin.timenotavailable.index', compact('timenotavailable'));
+        }elseif (Auth::user()->level_id === 2) {
+            $timenotavailable = $timenotavailable->paginate(5);
+            return view('guru.timenotavailable.index', compact('timenotavailable'));
+        }
 
     }
 
@@ -69,6 +82,7 @@ class Timenotavailble extends Controller
         $timenotavailable->guru_id=$request->nama_lengkap;
         $timenotavailable->hari_id=$request->hari;
         $timenotavailable->waktu_id=$request->waktu;
+        $timenotavailable->id_user = Auth::user()->id;
         $timenotavailable->save();
 
         return redirect()->route('timenotavailable.index')->with('success','Tambah Data Berhasil !');

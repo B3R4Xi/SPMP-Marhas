@@ -28,4 +28,8 @@ class Timenotavailable extends Model
         return $this->belongsTo(Waktu::class,'waktu_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_user');
+    }
 }

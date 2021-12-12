@@ -11,13 +11,20 @@ use App\GeneticAlgo\GenerateAlgorithm;
 use App\Models\Jadwal;
 use App\Models\Setting;
 use App\Http\Controllers\Controller;
+// use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-// use PhpOffice\PhpSpreadsheet\Writer\Pdf;
-use PDF;
+// use PDF;
+
 
 class GenetikController extends Controller
 {
+    
+    public function __construct()
+    {
+     $this->middleware('admin')->only('delete');
+     $this->middleware('auth'); 
+    }
     /**
      * Display a listing of the resource.
      *
@@ -103,11 +110,21 @@ class GenetikController extends Controller
         return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.xlsx');
     }
 
-    public function exportPDF(Request $request)
+    public function exportPDF($id)
     {
-        ob_end_clean();
-        ob_start();
-        return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
+        // ob_end_clean();
+        // ob_start();
+        // return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
+        $jadwals      = Jadwal::orderBy('hari_id','asc')
+            ->orderBy('waktu_id', 'desc')
+            ->where('type', $id)->get();
+            // ->paginate(15);
+        return view('admin.genetic.print', compact('jadwals'));
+        // ob_clean();
+        // ob_start();
+        // $pdf = PDF::loadview('admin.genetic.print',compact('jadwals'));
+        // return $pdf->download('Print Jadwal.pdf');
+       
     }
 
     public function exportAll()
@@ -119,9 +136,14 @@ class GenetikController extends Controller
 
     public function exportAllPDF()
     {
-        ob_end_clean();
-        ob_start();
-        return Excel::download(new exportAll,'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        // ob_end_clean();
+        // ob_start();
+        // return Excel::download(new exportAll,'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
+        $jadwals      = Jadwal::orderBy('hari_id','asc')
+            ->orderBy('waktu_id', 'desc')
+            ->get();
+            // ->paginate(15);
+        return view('admin.genetic.print', compact('jadwals'));
     }
 
     /**

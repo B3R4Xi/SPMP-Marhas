@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class GuruController extends Controller
 {
+    
+    public function __construct()
+    {
+     $this->middleware('admin')->only('destroy');
+     $this->middleware('auth'); 
+    }
     /**
      * Display a listing of the resource.
      *

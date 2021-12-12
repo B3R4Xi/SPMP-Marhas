@@ -20,6 +20,7 @@ class CreateTblTeach extends Migration
             $table->bigInteger('id_kelas')->unsigned()->nullable();
             $table->string('tahun_ajaran');
             $table->integer('id_tingkat')->unsigned()->nullable();
+            $table->bigInteger('id_user')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('id_mapel')->references('id_mapel')
@@ -28,6 +29,7 @@ class CreateTblTeach extends Migration
             ->on('tbl_guru')->OnUpdate('CASECADE')->OnDelete('CASECADE');
             $table->foreign('id_kelas')->references('id')
             ->on('tbl_kelas')->OnUpdate('CASECADE')->OnDelete('CASECADE');
+            $table->foreign('id_user')->references('id')->on('tbl_users')->OnUpdate('CASECADE')->OnDelete('CASECADE');
         });
     }
 

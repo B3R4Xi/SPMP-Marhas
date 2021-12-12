@@ -73,7 +73,7 @@
                         </i>
                         Export Jadwal
                     </a>
-                    <a class="btn btn-danger btn-sm" href="{{ route('admin.genetic.exportPDF', $id) }}">
+                    <a class="btn btn-danger btn-sm" href="{{ route('admin.genetic.exportPDF', $id) }}" target="_blank">
                         <i class="material-icons">
                             file_download
                         </i>
