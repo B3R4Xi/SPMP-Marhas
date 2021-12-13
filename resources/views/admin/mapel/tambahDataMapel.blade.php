@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="bmd-label-floating">Kode Mata Pelajaran</label>
-                            <input class="form-control" name="kode_mapel" type="text">
+                            <input class="form-control" name="kode_mapel" type="text" value="{{ old('kode_mapel') }}">
                             @if($errors->has('kode_mapel'))
                                 <span
                                     class="text-danger">{{ $errors->first('kode_mapel') }}</span>
@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nama Mata Pelajaran</label>
-                            <input class="form-control" name="nama_mapel" type="text">
+                            <input class="form-control" name="nama_mapel" type="text" value="{{ old('nama_mapel') }}">
                             @if($errors->has('nama_mapel'))
                                 <span
                                     class="text-danger">{{ $errors->first('nama_mapel') }}</span>

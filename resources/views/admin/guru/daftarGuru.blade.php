@@ -56,7 +56,7 @@
                                             class="btn btn-danger btn-fab btn-round">
                                             <i class="material-icons" style="color: white">delete</i>
                                             </button>
-                                      @elseif (Auth::user()->level_id === 2)
+                                      @endif
                                             <a href="#" class="btn btn-info btn-fab btn-round" id="detail2"
                                                 data-toggle="modal" data-target="#modal-detail"
                                                 data-nip="{{ $data->nip }}"
@@ -67,7 +67,6 @@
                                                 data-alamat="{{ $data->alamat }}">
                                               <i class="material-icons">visibility</i>
                                             </a>
-                                      @endif
                                         </form>
                                     </td>
                                 </tr>

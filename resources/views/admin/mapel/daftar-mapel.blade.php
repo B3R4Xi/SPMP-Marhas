@@ -64,7 +64,7 @@
                                             data-tingkat_mapel="{{ $data->tingkat_mapel }}">
                                             <i class="material-icons">visibility</i></a>
 
-                                        <button href="" onclick="return confirm('Yakin Hapus Data?')"
+                                        <button href="" onclick="return confirm('Apakah yakin data akan dihapus?')"
                                             class="btn btn-danger btn-fab btn-round">
                                             <i class="material-icons" style="color: white">delete</i>
                                         </button>

@@ -17,9 +17,14 @@ class LabController extends Controller
      $this->middleware('auth'); 
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        $lab=  Lab::orderBy('id')->paginate(4);
+        $lab = Lab::orderBy('id');
+        if (!empty($request->search))
+        {
+            $lab = $lab->where('nama_lab', 'LIKE', '%' .$request->search. '%');
+        }
+        $lab=$lab->paginate(4);
         return view('admin.lab.ruanganlab', compact('lab'));
     }
 

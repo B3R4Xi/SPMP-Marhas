@@ -83,7 +83,7 @@
         <div class="modal-dialog" role="document" style="width: 550px">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><b>Detail Data Pengajaran</b></h5>
+                    <h5 class="modal-title"><b>Detail Data Pengampu</b></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

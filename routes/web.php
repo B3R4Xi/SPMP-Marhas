@@ -81,6 +81,8 @@ Route::delete('/teach/{id}',[TeachController::class,'destroy'])->name('teach.des
 
 
 Route::get('/profile',[ProfileController::class,'index']);
+
+
 Route::get('/teach/create/getKelas/{id}',[TeachController::class, 'getKelas']);
 Route::get('/teach/create/getMapel/{id}',[TeachController::class, 'getMapel']);
 Route::get('/teach/id/edit/getMapel/{id}',[TeachController::class, 'getMapel']);

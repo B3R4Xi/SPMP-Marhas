@@ -92,10 +92,10 @@
                         <i class="material-icons">schedule</i>
                         Daftar Data Waktu
                     </a>
-                    <a class="dropdown-item" href="{{ url('/timedays') }}">
+                    {{-- <a class="dropdown-item" href="{{ url('/timedays') }}">
                         <i class="material-icons">timer</i>
                         Daftar Jam & Hari
-                    </a>
+                    </a> --}}
                 </div>
             </li>
 

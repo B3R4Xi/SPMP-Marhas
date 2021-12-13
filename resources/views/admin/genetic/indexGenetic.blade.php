@@ -54,27 +54,27 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom</label>
-                            <select class="select-text form-control"  name="kromosom">
-                                <option value="" disabled selected>Nilai Kromosom</option>
+                            <input class="select-text form-control"  name="kromosom">
+                                {{-- <option value="" disabled selected>Nilai Kromosom</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
+                            </select> --}}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi</label>
-                            <select class="select-text form-control"  name="generasi">
-                                <option value="" disabled selected>Nilai Generasi</option>
+                            <input class="select-text form-control"  name="generasi">
+                                {{-- <option value="" disabled selected>Nilai Generasi</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
+                            </input> --}}
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@
                         <div class="col-md-12 text-left">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Email</label>
-                                <input class="form-control" name="email" id="email" type="text" autofocus required value="{{ old('email') }}">
+                                <input class="form-control" name="email" id="email" type="text" autofocus  value="{{ old('email') }}">
                                 @if($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
@@ -53,7 +53,7 @@
                         <div class="col-md-12 text-left">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Password</label>
-                                <input class="form-control" name="password" type="password" required>
+                                <input class="form-control" name="password" type="password" >
                                 @if($errors->has('password'))
                                     <span
                                         class="text-danger">{{ $errors->first('password') }}</span>

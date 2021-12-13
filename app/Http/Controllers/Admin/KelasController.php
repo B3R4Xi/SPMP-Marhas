@@ -21,12 +21,16 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         // $data = DB::table('tbl_kelas')->paginate(4);
-        $kelas = Kelas::orderBy('kode_kelas');
-        $kelas = $kelas->paginate(5);
+        $kelas = Kelas::orderBy('id');
+        if (!empty($request->search))
+        {
+            $kelas = $kelas->where('nama_kelas', 'LIKE', '%' .$request->search. '%');
+        }
+        $kelas = $kelas->paginate(4);
         return view('admin.kelas.daftarKelas',compact('kelas'));
         
     }
