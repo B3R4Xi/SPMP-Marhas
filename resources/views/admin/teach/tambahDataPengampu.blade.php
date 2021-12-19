@@ -15,7 +15,7 @@
                             <form action="{{ route('teach.store') }}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Tingkat Kelas</label>
                                             <select name="tm" class="form-control" id="tm">
@@ -32,9 +32,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Mata Pelajaran</label>
                                             <select name="mapel" class="form-control" id="mapel">
@@ -51,7 +49,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Kelas</label>
                                             {{-- <input type="email" class="form-control" name="kelas" value="{{old('kelas')}}"> --}}
@@ -70,7 +68,9 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row">  
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nama Guru</label>
                                             <select class="form-control" name="nama_guru" id="nama_guru">
@@ -87,12 +87,18 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Tahun Ajaran</label>
-                                            <input type="text" class="form-control" name="tahun_ajaran" value="{{old('tahun_ajaran')}}">
+                                            {{-- <input type="text" class="form-control" name="tahun_ajaran" value="{{old('tahun_ajaran')}}"> --}}
+                                            <select class="select-text form-control"  name="tahun_ajaran">
+                                                <option value="" disabled selected>Pilih tahun ajaran</option>
+                                                <option value="2021-2022">2021-2022</option>
+                                                <option value="2022-2023">2022-2023</option>
+                                                <option value="2024-2025">2024-2025</option>
+                                                <option value="2025-2026">2025-2026</option>
+                                                <option value="2027-2028">2027-2028</option>
+                                            </select>
                                             @if($errors->has('tahun_ajaran'))
                                                 <span
                                                     class="text-danger">{{ $errors->first('tahun_ajaran') }}</span>

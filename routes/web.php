@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\TimedaysController;
 use App\Http\Controllers\Admin\TeachController;
 use App\Http\Controllers\Admin\Timenotavailble;
 use App\Http\Controllers\Admin\ManagementController;
+use App\Http\Controllers\Admin\UploadJadwal;
 use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Support\Facades\Auth;
@@ -46,8 +47,8 @@ Route::middleware(['admin'])->group(function()
     
     //ROUTE FOR AJAX
     Route::get('/management/create/getGuru/{id}',[ManagementController::class, 'getGuru']);
-    Route::get('/management/create/getGuruAlamat/{id}',[ManagementController::class, 'getGuruAlamat']);
-    Route::get('/management/create/getGuruNohp/{id}',[ManagementController::class, 'getGuruNohp']);
+    // Route::get('/management/create/getGuruAlamat/{id}',[ManagementController::class, 'getGuruAlamat']);
+    // Route::get('/management/create/getGuruNohp/{id}',[ManagementController::class, 'getGuruNohp']);
     
     //Resource Route
     //-------------------------------------------------------------//
@@ -58,7 +59,8 @@ Route::middleware(['admin'])->group(function()
     Route::resource('timedays', TimedaysController::class);
     Route::resource('genetika', GenetikController::class);
 
-
+    Route::get('upload',[UploadJadwal::class,'index'])->name('upload.index');
+    Route::post('/upload/jadwal', [UploadJadwal::class,'ImportJadwal'])->name('upload.jadwal');
 });
 
 Route::get('/',[HomeController::class,'index']);

@@ -118,6 +118,13 @@
                     </a>
                 </div>
             </li>
+            <li
+                class="nav-item {{ request()->is('upload') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('upload.index') }}">
+                        <i class="material-icons">cloud_upload</i>
+                        Upload Jadwal
+                    </a>
+            </li>
         </ul>
         @elseif (Auth::user()->level_id === 2)
         <ul class="nav">
@@ -147,7 +154,7 @@
             </li>
 
             {{-- GENERATE JADWAL DROPDOWN --}}
-            <li
+            {{-- <li
                 class="nav-item dropdown {{ request()->is('genetika', 'genetika/result/1') ? 'active' : '' }}">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -160,7 +167,8 @@
                         Jadwal Pelajaran
                     </a>
                 </div>
-            </li>
+                
+            </li> --}}
         </ul>
         @endif
     </div>

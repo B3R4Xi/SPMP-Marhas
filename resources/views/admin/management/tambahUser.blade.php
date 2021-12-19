@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Nama Lengkap</label>
+                                    <label class="">Nama Lengkap</label>
                                     <select class="form-control" name="nama" id="nama">
                                         <option value="">Pilih Nama Guru</option>
                                          @foreach ($guru as $guru => $dt)
@@ -23,45 +23,55 @@
                                                 {{ $dt }}
                                             </option>
                                         @endforeach
+                                        <input type="hidden" name="nama_" id="nama_" value=""/>
                                     </select>
-                                    <input type="hidden" name="nama_" id="nama_" value=""/>
                                     @if($errors->has('nama_'))
                                                 <span class="text-danger">{{ $errors->first('nama_') }}</span>
                                     @endif
                                 </div>
                             </div>
                             
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Email</label>
                                     <select class="form-control" name="email" id="email" disabled>
+                                    </select>
                                         @if($errors->has('email_'))
                                                 <span class="text-danger">{{ $errors->first('email_') }}</span>
                                         @endif
-                                    </select>
-                                    <input type="hidden" name="email_" id="email_" value=""/>
+                                    <input class="form-control" type="text" name="email_" id="email" value="" readonly/>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="">Email</label>
+                                    <input class="form-control" name="email" id="emailid_" readonly>
+                                    {{-- </input> --}}
+                                    {{-- <input type="text" name="alamat_" id="emailid_" value=""/> --}}
+                                    @if($errors->has('alamat_'))
+                                                <span class="text-danger">{{ $errors->first('alamat_') }}</span>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Alamat</label>
-                                    <select class="form-control" name="alamat" id="alamat" disabled>
-                                    </select>
-                                    <input type="hidden" name="alamat_" id="alamat_" value=""/>
+                                    <label class="">Alamat</label>
+                                    <input class="form-control" name="alamat" id="alamatid_" readonly/>
+                                    {{-- <input type="text" name="alamat_" id="alamatid_" value=""/> --}}
                                     @if($errors->has('alamat_'))
                                                 <span class="text-danger">{{ $errors->first('alamat_') }}</span>
                                     @endif
                                 </div>
                             </div>
                             
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="bmd-label-floating">Nomor Handphone</label>
-                                    <select class="form-control" name="no_hp" id="no_hp" disabled>
-                                    </select>
-                                    <input type="hidden" name="no_hp_" id="no_hp_" value=""/>
+                                    <label class="">Nomor Handphone</label>
+                                    <input class="form-control" name="no_hp" id="nohpid_" readonly>
+                                    {{-- </input> --}}
+                                    {{-- <input type="text" name="no_hp_" id="nohpid_" value=""/> --}}
                                     @if($errors->has('no_hp_'))
                                                 <span class="text-danger">{{ $errors->first('no_hp_') }}</span>
                                     @endif

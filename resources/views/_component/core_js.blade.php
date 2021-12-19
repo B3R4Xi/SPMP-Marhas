@@ -39,6 +39,37 @@
 <!-- Time Picker -->
 {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script> --}}
 
+{{-- loading animate upload --}}
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+<script type="text/javascript">
+    $(function() {
+         $(document).ready(function()
+         {
+            var bar = $('.bar');
+            var percent = $('.percent');
+
+      $('form').ajaxForm({
+        beforeSend: function() {
+            var percentVal = '0%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        },
+        complete: function(xhr) {
+            alert('Jadwal Berhasil Diupload !');
+            window.location.href = "/upload";
+        }
+      });
+   }); 
+ });
+</script> --}}
+
+
+
 <script>
     //DOM untuk PAGE MAPEL
     $(document).ready(function () {
@@ -217,57 +248,14 @@
                     type        : "GET",
                     dataType    : "json",
                     success     : function(data){
-                        console.log(data);
-                        jQuery('select[name="email"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="email"]').append('<option value="'+key+'">'+value+'</option>');
-                            $('input[name="email_"]').append('<input name="email_" id="email_" value="'+value+'"/>');
-                        });
-                        jQuery('select[name="id"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="id"]').append('<option value="'+key+'">'+value+'</option>');
-                        });
+                        console.log(data.getGuru);
+                        // jQuery('select[name="email"]').empty();
+                            $('#nama_').val(data.getGuru.nama_lengkap);
+                            $('#emailid_').val(data.getGuru.email);
+                            $('#alamatid_').val(data.getGuru.alamat);
+                            $('#nohpid_').val(data.getGuru.no_hp);
                     } 
                 });
-                jQuery.ajax({
-                    url         : '/management/create/getGuruAlamat/' +grID,
-                    type        : "GET",
-                    dataType    : "json",
-                    success     : function(data){
-                        console.log(data);
-                        jQuery('select[name="alamat"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="alamat"]').append('<option value="'+key+'">'+value+'</option>');
-                            $('input[name="alamat_"]').append('<input name="alamat_" id="alamat_" value="'+value+'"/>');
-                        });
-                        jQuery('select[name="id"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="id"]').append('<option value="'+key+'">'+value+'</option>');
-                        });
-                    } 
-                });
-                jQuery.ajax({
-                    url         : '/management/create/getGuruNohp/' +grID,
-                    type        : "GET",
-                    dataType    : "json",
-                    success     : function(data){
-                        console.log(data);
-                        jQuery('select[name="no_hp"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="no_hp"]').append('<option value="'+key+'">'+value+'</option>');
-                            $('input[name="no_hp_"]').append('<input name="no_hp_" id="no_hp_" value="'+value+'"/>');
-                        });
-                        jQuery('select[name="id"]').empty();
-                        jQuery.each(data, function(key,value){
-                            $('select[name="id"]').append('<option value="'+key+'">'+value+'</option>');
-                        });
-                    } 
-                });
-            }else{
-                $('select[name="nama"]').empty();
-                $('select[name="alamat"]').empty();
-                $('select[name="no_hp"]').empty();
-                $('select[name="email"]').empty();
             }
         });
     });

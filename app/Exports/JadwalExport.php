@@ -33,7 +33,7 @@ class JadwalExport implements
 
     public function collection()
     {   
-        return Jadwal::where('type', $this->id)->orderBy('hari_id', 'asc')->get();
+        return Jadwal::where('type', $this->id)->orderBy('hari_id', 'asc')->orderBy('waktu_id','asc')->get();
     }
 
     public function map($jadwals): array

@@ -51,12 +51,14 @@ class GenetikController extends Controller
         $input_mutasi       = $request->input('mutasi');
         $count_guru         = Guru::count();
         $count_pengampu     = Teach::count();
-        // echo json_encode($count_guru);exit;
+        // dd($count_pengampu);
         $kromosom           = $input_kromosom * $input_generasi;
         $crossover          = $input_kromosom * $input_crossover;
         $generate           = new GenerateAlgorithm;
         $data_kromosoms     = $generate->randKromoson($kromosom,$count_pengampu,$input_tahun,$input_semester);
+        // echo json_encode($data_kromosoms);exit;
         $result_jadwals     = $generate->checkPinalty();
+        // dd($result_jadwals);
         
         
         $total_gen          = Setting::firstOrNew(['key' => 'total_gen']);
@@ -80,8 +82,8 @@ class GenetikController extends Controller
         $crossover  = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi     = Setting::where('key', Setting::MUTASI)->first();
         $value_jadwal = Jadwal::where('type', $id)->first();
-        $jadwals      = Jadwal::orderBy('hari_id','desc')
-            ->orderBy('waktu_id', 'desc')
+        $jadwals      = Jadwal::orderBy('hari_id','asc')
+            ->orderBy('waktu_id', 'asc')
             ->where('type', $id)
             ->paginate(15);
         // dd($jadwals)
@@ -115,8 +117,8 @@ class GenetikController extends Controller
         // ob_end_clean();
         // ob_start();
         // return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
-        $jadwals      = Jadwal::orderBy('hari_id','asc')
-            ->orderBy('waktu_id', 'desc')
+        $jadwals      = Jadwal::orderBy('waktu_id','asc')
+            ->orderBy('hari_id', 'asc')
             ->where('type', $id)->get();
             // ->paginate(15);
         return view('admin.genetic.print', compact('jadwals'));
@@ -140,8 +142,9 @@ class GenetikController extends Controller
         // ob_start();
         // return Excel::download(new exportAll,'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         $jadwals      = Jadwal::orderBy('hari_id','asc')
-            ->orderBy('waktu_id', 'desc')
-            ->get();
+            ->orderBy('waktu_id', 'asc')
+            ->orderBy('teach_id', 'asc')
+            ->all();
             // ->paginate(15);
         return view('admin.genetic.print', compact('jadwals'));
     }

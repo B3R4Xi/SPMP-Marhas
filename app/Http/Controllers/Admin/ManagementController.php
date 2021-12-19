@@ -49,10 +49,12 @@ class ManagementController extends Controller
 
     public function getGuru($id)
     {
-        $getGuru = DB::table('tbl_guru')->where('id', $id)->pluck('email','id');
-        return json_encode($getGuru);
+        $getGuru = DB::table('tbl_guru')->where('id', $id)->first();
+        // return json_encode($getGuru);
+        return response()->json([
+            'getGuru' => $getGuru,
+        ]);
     }
-
     public function getGuruAlamat($id)
     {
         $getGuruAlamat = DB::table('tbl_guru')->where('id', $id)->pluck('alamat', 'id');
@@ -75,14 +77,14 @@ class ManagementController extends Controller
     {
         //
         $request->validate([
-            'nama'              => 'required|unique:tbl_users,name',
-            'email_'             => 'required',
-            'alamat_'            => 'required',
-            'no_hp_'             => 'required',
+            'nama_'              => 'required|unique:tbl_users,name',
+            'email'             => 'required',
+            'alamat'            => 'required',
+            'no_hp'             => 'required',
             'password'           => 'required',
             'conf-password'      => 'required',
         ],[
-            'nama.required'             => 'Data wajib diisi!', 
+            'nama_.required'             => 'Data wajib diisi!', 
             'email_.required'            => 'Data wajib diisi!',
             'alamat_.required'           => 'Data wajib diisi!',
             'no_hp_.required'            => 'Data wajib diisi!',
@@ -91,9 +93,9 @@ class ManagementController extends Controller
         
         $users = new User();
         $users->name=$request->input('nama_');
-        $users->email=$request->input('email_');
-        $users->alamat=$request->input('alamat_');
-        $users->no_hp=$request->input('no_hp_');
+        $users->email=$request->input('email');
+        $users->alamat=$request->input('alamat');
+        $users->no_hp=$request->input('nohp');
         $users->password=Hash::make($request->input('password'));
         $users->level_id=$request->input('level');
         // $users->save();

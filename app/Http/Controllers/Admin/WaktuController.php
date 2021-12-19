@@ -22,10 +22,15 @@ class WaktuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data= DB::table('tbl_waktu')->paginate(4);
+        $data = Waktu::orderBy('id');
+        if (!empty($request->search)) 
+        {
+            $data = $data->where('kode_waktu', 'LIKE', '%' .$request->search. '%');
+        }
+        $data = $data->paginate(4);
         return view('admin.waktu.daftarwaktu',['waktu'=>$data]);
     }
 

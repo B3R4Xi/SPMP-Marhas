@@ -6,7 +6,6 @@ use App\Models\Jadwal;
 use App\Models\lab;
 use App\Models\Waktu;
 use App\Models\Timenotavailable;
-use Illuminate\Console\Scheduling\Schedule;
 // use DB;
 use Illuminate\Support\Facades\DB as DB;
 
@@ -15,7 +14,6 @@ class GenerateAlgorithm
         public function randKromoson($kromosom, $count_teach, $input_year, $input_semester)
         {
             Jadwal::truncate();
-            // echo $input_semester;exit;
             for ($i=0; $i < $kromosom; $i++) 
             { 
                 $values = [];
@@ -25,20 +23,20 @@ class GenerateAlgorithm
                         $query->where('tbl_mapel.semester_id', $input_semester);
                     });
                     
+                    $teachs =$teach->where('tahun_ajaran', $input_year)->inRandomOrder()->first();
                     $hari   = Hari::inRandomOrder()->first();
-                    $teach  = $teach->where('tahun_ajaran', $input_year)->inRandomOrder()->first();
-                    $lab    = Lab::where('jenis_lab_id', $teach->mapel->jenis_mapel_id)->inRandomOrder()->first();
-                    $waktu  = Waktu::where('jumlah_jam', $teach->mapel->jumlah_jam)->inRandomOrder()->first();
+                    $lab    = Lab::where('jenis_lab_id', $teachs->mapel->jenis_mapel_id)->inRandomOrder()->first();
+                    $waktu  = Waktu::where('jumlah_jam', $teachs->mapel->jumlah_jam)->inRandomOrder()->first();
                     // echo json_encode($lab);exit;
-
+                    
                     $params = [
-                        'teach_id'  => $teach->id,
+                        'teach_id'  => $teachs->id,
                         'hari_id'   => $hari->id,
                         'waktu_id'  => $waktu->id,
                         'lab_id'    => $lab->id,
                         'type'      => $i +1,
                     ];
-                    // echo $params;exit;
+                    // echo json_encode($params);exit;
                     // dd($params);
                     Jadwal::create($params);
                 }
@@ -46,7 +44,7 @@ class GenerateAlgorithm
             }
             return $data;
         }
-
+        
         public function checkPinalty()
         {
             $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, waktu_id, lab_id, type, count(*) as `jumlah`'))
@@ -60,7 +58,7 @@ class GenerateAlgorithm
             // dd($jadwals);
             
             $hasil_jadwals = $this->increaseProccess($jadwals);
-            // echo json_encode($jadwals);exit;
+            // echo json_encode($hasil_jadwals);exit;
             $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, waktu_id, lab_id, type, count(*) as `jumlah`'))
             ->groupBy('teach_id')
             ->groupBy('hari_id')
@@ -94,13 +92,14 @@ class GenerateAlgorithm
 
             $hasil_jadwals = $this->increaseProccess($jadwals);
 
-            $jadwals = Jadwal::where('hari_id', Schedule::FRIDAY)->whereIn('waktu_id', [11])->get();
+            $jadwals = Jadwal::where('hari_id', Jadwal::JUMAT)->whereIn('waktu_id', [11])->get();
 
             if (!empty($jadwals)) 
             {
                 foreach ($jadwals as $key => $jadwal)
                 {
                     $jadwal->value         = $jadwal->value +1;
+                    // echo json_encode($jadwal);exit;
                     $jadwal->value_process = $jadwal->value_process . "+1";
                     $jadwal->save();
                 }    
@@ -148,15 +147,16 @@ class GenerateAlgorithm
             {
                 foreach ( $jadwals as $key => $jadwal)
                 {
-                    if ($jadwal-> jumlah >1) 
+                    if ($jadwal-> jumlah > 1) 
                     {
                         $jadwal_dimanas = Jadwal::where('type', $jadwal->type)->get();
                         foreach ( $jadwal_dimanas as $key => $jadwal_dimana)
                         {
                             $jadwal_dimana->value           = $jadwal_dimana->value + ($jadwal->jumlah - 1);
-                            $jadwal_dimana->value_process   = $jadwal_dimana->value_process . "+" . ($jadwal->jumlah-1);
+                            $jadwal_dimana->value_process   = $jadwal_dimana->value_process . "+" . ($jadwal->jumlah - 1);
                             $jadwal_dimana->save();
                         }
+                        // dd($jadwal_dimanas);
                     }
                 }
             }

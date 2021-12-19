@@ -11,7 +11,7 @@
             <form action="/daftarmapel/insert" method="POST">
                 @csrf
                 <div class="row mb-2">
-                    <div class="col-md-12">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label class="bmd-label-floating">Kode Mata Pelajaran</label>
                             <input class="form-control" name="kode_mapel" type="text" value="{{ old('kode_mapel') }}">
@@ -21,9 +21,7 @@
                             @endif
                         </div>
                     </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-md-12">
+                    <div class="col-md-5">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nama Mata Pelajaran</label>
                             <input class="form-control" name="nama_mapel" type="text" value="{{ old('nama_mapel') }}">
@@ -31,6 +29,16 @@
                                 <span
                                     class="text-danger">{{ $errors->first('nama_mapel') }}</span>
                             @endif
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                                    <label class="bmd-label-floating">Jumlah Jam Mapel</label>
+                                    <input class="select-text form-control"  name="jumlah_jam" type="text">
+                                @if($errors->has('jumlah_jam'))
+                                    <span
+                                        class="text-danger">{{ $errors->first('jumlah_jam') }}</span>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -92,18 +100,6 @@
                                 @if($errors->has('jenis_mapel_id'))
                                     <span
                                         class="text-danger">{{ $errors->first('jenis_mapel_id') }}</span>
-                                @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                                    <label class="bmd-label-floating">Jumlah Jam Mapel</label>
-                                    <input class="select-text form-control"  name="jumlah_jam" type="text">
-                                @if($errors->has('jumlah_jam'))
-                                    <span
-                                        class="text-danger">{{ $errors->first('jumlah_jam') }}</span>
                                 @endif
                         </div>
                     </div>

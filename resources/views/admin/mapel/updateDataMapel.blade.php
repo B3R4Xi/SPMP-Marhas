@@ -12,7 +12,7 @@
                 <form action="/daftarmapel/update/{{ $data->id_mapel }}" method="POST">
                     @csrf
                     <div class="row mb-2 mt-2">
-                        <div class="col-md-12">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Kode Mata Pelajaran</label>
                                 <input class="form-control" name="kode_mapel" id="kode_mapel" type="text"
@@ -23,9 +23,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Nama Mata Pelajaran</label>
                                 <input class="form-control" name="nama_mapel" id="nama_mapel" type="text"
@@ -36,9 +34,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                        <label class="bmd-label-floating">Jumlah Jam Mapel</label>
+                                        <input class="select-text form-control" required name="jumlah_jam" value="{{ $data->jumlah_jam }}">
+                                    @if($errors->has('jumlah_jam'))
+                                        <span
+                                            class="text-danger">{{ $errors->first('jumlah_jam') }}</span>
+                                    @endif
+                            </div>
+                        </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                       <label class="select-label">Tingkat</label>
                                     <select class="select-text form-control" name="tingkat_mapel_id">
@@ -53,7 +61,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label class="select-label">Semester</label>
                               <select class="select-text form-control" name="semester_id">
@@ -68,7 +76,7 @@
                           @endif
                         </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                       <label class="select-label">Jenis Mapel</label>
                                     <select class="select-text form-control" name="jenis_mapel_id">
@@ -83,19 +91,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                        <label class="bmd-label-floating">Jumlah Jam Mapel</label>
-                                        <input class="select-text form-control" required name="jumlah_jam" value="{{ $data->jumlah_jam }}">
-                                    @if($errors->has('jumlah_jam'))
-                                        <span
-                                            class="text-danger">{{ $errors->first('jumlah_jam') }}</span>
-                                    @endif
-                            </div>
-                        </div>
-                        
                     </div>
                     <button type="submit" class="btn btn-success pull-right">
                         <i class="material-icons">save</i> Update</button>

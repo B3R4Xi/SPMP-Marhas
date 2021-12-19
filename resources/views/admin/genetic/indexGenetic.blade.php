@@ -30,7 +30,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Tahun Akademik</label>
-                            <select class="select-text form-control"  name="tahun">
+                            <select class="select-text form-control"  name="tahun" required>
                                 <option value="" disabled selected>Pilih Tahun</option>
                                 @foreach ($tahun as $tahun => $data)
                                 <option value="{{ $tahun }}">{{ $data }}</option>
@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Semester Akademik</label>
-                            <select class="select-text form-control"  name="semester">
+                            <select class="select-text form-control"  name="semester" required>
                                 <option value="" disabled selected>Pilih Semester</option>
                                 @foreach ($semester as $data)
                                 <option value="{{ $data->id }}">{{ $data->semester }}</option>
@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom</label>
-                            <input class="select-text form-control"  name="kromosom">
+                            <input class="select-text form-control"  name="kromosom" required>
                                 {{-- <option value="" disabled selected>Nilai Kromosom</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -67,7 +67,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi</label>
-                            <input class="select-text form-control"  name="generasi">
+                            <input class="select-text form-control"  name="generasi" required>
                                 {{-- <option value="" disabled selected>Nilai Generasi</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
