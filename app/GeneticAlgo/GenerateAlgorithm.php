@@ -62,9 +62,9 @@ class GenerateAlgorithm
         } else if ($check_guru_id) {
             return $this->prosesRandoming($i, $input_tahun, $input_semester);
         }
-        // else if ($check_kelas_id) {
-        //     return $this->prosesRandoming($i, $input_tahun, $input_semester);
-        // }
+        else if ($check_kelas_id) {
+            return $this->prosesRandoming($i, $input_tahun, $input_semester);
+        }
         else {
             $jadwal = Jadwal::create($params);
             return $jadwal;

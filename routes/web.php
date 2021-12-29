@@ -95,4 +95,5 @@ Route::get('genetika/export/{id}', [GenetikController::class, 'export'])->name('
 Route::get('genetika/exportPDF/{id}', [GenetikController::class, 'exportPDF'])->name('admin.genetic.exportPDF');
 
 Route::get('genetika/result/{id}', [GenetikController::class, 'result'])->name('admin.genetic.result');
+Route::get('genetika/showClass/{id}', [GenetikController::class, 'showClasses'])->name('admin.genetic.showClass');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

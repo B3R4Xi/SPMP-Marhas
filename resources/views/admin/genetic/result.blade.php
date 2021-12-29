@@ -25,6 +25,25 @@
     <div class="card">
         <div class="card-body">
             <div class="alert alert-success alert-dismissable">
+                @if(!empty($data_kromosom))
+                <ul class="nav nav-tabs nav-justified">
+                    @foreach ($data_kromosom as $key => $kromosom)
+                        @if ($id == ($key+1))
+                            <li role="presentation" class="active">
+                        @else
+                            <li role="presentation">
+                        @endif
+                            <a href="{{ Route('admin.genetic.showClass', $key+1) }}">
+                                @if ($kromosom['value_jadwals'] == 1)
+                                    Jadwal Terbaik
+                                @else
+                                    Jadwal {{ $key+1 }}
+                                @endif
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                @endif
                 <button aria-hidden="true" class="close" data-dismiss="alert" type="button">
                     ×
                 </button>
