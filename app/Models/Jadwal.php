@@ -12,10 +12,10 @@ class Jadwal extends Model
 
     const BEGINNILAI = 1;
     const JUMAT      = 5;
-    
+
     public function hari()
     {
-        return $this->belongsTo(Hari::class,'hari_id');
+        return $this->belongsTo(Hari::class, 'hari_id');
     }
 
     public function teach()

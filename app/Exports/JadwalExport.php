@@ -14,65 +14,65 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class JadwalExport implements 
-        FromCollection, 
-        WithMapping, 
-        WithHeadings, 
-        ShouldAutoSize, 
-        WithStyles, 
-        WithDrawings,
-        WithCustomStartCell
+class JadwalExport implements
+    FromCollection,
+    WithMapping,
+    WithHeadings,
+    ShouldAutoSize,
+    WithStyles,
+    WithDrawings,
+    WithCustomStartCell
 
 {
 
     protected $id;
-        function __construct($id)
-        {
-            $this->id =$id;
-        }
+    function __construct($id)
+    {
+        $this->id = $id;
+    }
 
     public function collection()
-    {   
-        return Jadwal::where('type', $this->id)->orderBy('hari_id', 'asc')->orderBy('waktu_id','asc')->get();
+    {
+        return Jadwal::where('type', $this->id)->orderBy('hari_id', 'asc')->orderBy('waktu_id', 'asc')->get();
     }
 
     public function map($jadwals): array
     {
         $jadwal     = Jadwal::get();
         return
-        [
-            $jadwals->hari->nama_hari,
-            $jadwals->waktu->range,
-            $jadwals->teach->guru->nama_lengkap,
-            $jadwals->teach->mapel->nama_mapel,
-            $jadwals->teach->kelas->nama_kelas,
-            $jadwals->lab->nama_lab,
-            $jadwals->type,
-            $jadwals->value,
+            [
+                $jadwals->hari->nama_hari,
+                $jadwals->waktu->range,
+                $jadwals->teach->guru->nama_lengkap,
+                $jadwals->teach->mapel->nama_mapel,
+                $jadwals->teach->kelas->nama_kelas,
+                $jadwals->lab->nama_lab,
+                $jadwals->type,
+                $jadwals->value,
 
-        ];
+            ];
     }
 
     public function headings(): array
     {
-        return 
-        [
+        return
             [
-            'Hari',
-            'Jam Pelajaran',
-            'Pengajar',
-            'Mata Pelajaran',
-            'Kelas',
-            'Ruangan',
-            'Type',
-            'Nilai Jadwal',]
-        ];
+                [
+                    'Hari',
+                    'Jam Pelajaran',
+                    'Pengajar',
+                    'Mata Pelajaran',
+                    'Kelas',
+                    'Ruangan',
+                    'Type',
+                    'Nilai Jadwal',
+                ]
+            ];
     }
     public function styles(Worksheet $worksheet)
     {
-        $worksheet->getStyle('A6:H6')->applyFromArray(['font' =>['bold' => true]])
-                  ->getFill()->applyFromArray(['fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'D9D9D9'],'setAligment' => 'center']);
-        
+        $worksheet->getStyle('A6:H6')->applyFromArray(['font' => ['bold' => true]])
+            ->getFill()->applyFromArray(['fillType' => 'solid', 'rotation' => 0, 'color' => ['rgb' => 'D9D9D9'], 'setAligment' => 'center']);
     }
 
     public function drawings()
@@ -91,6 +91,4 @@ class JadwalExport implements
     {
         return 'A6';
     }
-    
 }
-

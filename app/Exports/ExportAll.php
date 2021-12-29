@@ -16,7 +16,7 @@ class ExportAll implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize,
 
 
     public function query()
-    {   
+    {
         return Jadwal::query()->orderBy('type', 'asc')->orderBy('hari_id', 'asc');
     }
 
@@ -24,17 +24,17 @@ class ExportAll implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize,
     {
         $jadwal     = Jadwal::get();
         return
-        [
-            $jadwals->hari->nama_hari,
-            $jadwals->waktu->range,
-            $jadwals->teach->guru->nama_lengkap,
-            $jadwals->teach->mapel->nama_mapel,
-            $jadwals->teach->kelas->nama_kelas,
-            $jadwals->lab->nama_lab,
-            $jadwals->type,
-            $jadwals->value,
+            [
+                $jadwals->hari->nama_hari,
+                $jadwals->waktu->range,
+                $jadwals->teach->guru->nama_lengkap,
+                $jadwals->teach->mapel->nama_mapel,
+                $jadwals->teach->kelas->nama_kelas,
+                $jadwals->lab->nama_lab,
+                $jadwals->type,
+                $jadwals->value,
 
-        ];
+            ];
     }
 
     public function headings(): array
@@ -54,8 +54,8 @@ class ExportAll implements FromQuery, WithMapping, WithHeadings, ShouldAutoSize,
     public function styles(Worksheet $worksheet)
     {
         return
-        [
-            1 => ['font' => ['bold' => true]],
-        ];
+            [
+                1 => ['font' => ['bold' => true]],
+            ];
     }
 }

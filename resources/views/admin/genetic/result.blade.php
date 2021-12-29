@@ -1,6 +1,6 @@
 @extends('_component.master_apps')
 @section('title', 'Algoritma Genetika - Result')
-@section('content')    
+@section('content')
 <div class="container-fluid">
     @if(session('success'))
         <div class="container" style="overflow-x: auto;">

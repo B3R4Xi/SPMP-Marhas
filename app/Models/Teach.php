@@ -23,7 +23,6 @@ class Teach extends Model
     public function mapel()
     {
         return $this->belongsTo(DaftarMapelModel::class, 'id_mapel');
-        
     }
 
     public function kelas()
@@ -33,6 +32,6 @@ class Teach extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
 }

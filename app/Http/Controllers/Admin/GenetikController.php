@@ -19,11 +19,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class GenetikController extends Controller
 {
-    
+
     public function __construct()
     {
-     $this->middleware('admin')->only('delete');
-     $this->middleware('auth'); 
+        $this->middleware('admin')->only('delete');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class GenetikController extends Controller
         $semester   = Semester::get();
         $tahun      = Teach::select('tahun_ajaran')->groupBy('tahun_ajaran')->pluck('tahun_ajaran', 'tahun_ajaran');
 
-        return view ('admin.genetic.indexGenetic', compact('tahun','semester'));
+        return view('admin.genetic.indexGenetic', compact('tahun', 'semester'));
     }
 
     // Fungsi sumbit
@@ -51,16 +51,14 @@ class GenetikController extends Controller
         $input_mutasi       = $request->input('mutasi');
         $count_guru         = Guru::count();
         $count_pengampu     = Teach::count();
-        // dd($count_pengampu);
         $kromosom           = $input_kromosom * $input_generasi;
+        // dd($kromosom);
         $crossover          = $input_kromosom * $input_crossover;
         $generate           = new GenerateAlgorithm;
-        $data_kromosoms     = $generate->randKromoson($kromosom,$count_pengampu,$input_tahun,$input_semester);
-        // echo json_encode($data_kromosoms);exit;
+        $data_kromosoms     = $generate->randKromoson($kromosom, $count_pengampu, $input_tahun, $input_semester);
         $result_jadwals     = $generate->checkPinalty();
-        // dd($result_jadwals);
-        
-        
+
+
         $total_gen          = Setting::firstOrNew(['key' => 'total_gen']);
         $total_gen->name    = 'Total Gen';
         $total_gen->value   = $crossover;
@@ -78,29 +76,29 @@ class GenetikController extends Controller
     public function result($id)
     {
         $tahun      = Teach::select('tahun_ajaran')->groupBy('tahun_ajaran')->pluck('tahun_ajaran', 'tahun_ajaran');
+        // dd($tahun);
         $kromosom   = Jadwal::select('type')->groupBy('type')->get()->count();
         $crossover  = Setting::where('key', Setting::CROSSOVER)->first();
         $mutasi     = Setting::where('key', Setting::MUTASI)->first();
         $value_jadwal = Jadwal::where('type', $id)->first();
-        $jadwals      = Jadwal::orderBy('hari_id','asc')
+        $jadwals      = Jadwal::orderBy('hari_id', 'asc')
             ->orderBy('waktu_id', 'asc')
             ->where('type', $id)
             ->paginate(15);
         // dd($jadwals)
         // echo json_encode($tahun);exit;
-        if (empty($value_jadwal)) 
-        {
+        if (empty($value_jadwal)) {
             abort(404);
         }
 
-        for ($i=1; $i <= $kromosom; $i++) 
-        { 
+        for ($i = 1; $i <= $kromosom; $i++) {
             $value_jadwals = Jadwal::where('type', $i)->first();
             $data_kromosom[] = [
                 'value_jadwals' => $value_jadwals->value,
             ];
+            // dd($data_kromosom);
         }
-        return view('admin.genetic.result', compact('jadwals','tahun', 'data_kromosom','id','value_jadwal','crossover','mutasi'));
+        return view('admin.genetic.result', compact('jadwals', 'tahun', 'data_kromosom', 'id', 'value_jadwal', 'crossover', 'mutasi'));
     }
 
 
@@ -109,7 +107,7 @@ class GenetikController extends Controller
     {
         ob_end_clean();
         ob_start();
-        return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.xlsx');
+        return Excel::download(new JadwalExport($request->id), 'Jadwal Type -' . ($request->id) . '.xlsx');
     }
 
     public function exportPDF($id)
@@ -117,19 +115,18 @@ class GenetikController extends Controller
         // ob_end_clean();
         // ob_start();
         // return Excel::download(new JadwalExport($request->id), 'Jadwal Type -'.($request->id).'.pdf',\Maatwebsite\Excel\Excel::DOMPDF);
-        $jadwals      = Jadwal::orderBy('waktu_id','asc')
-            ->orderBy('hari_id', 'asc')
+        $jadwals      = Jadwal::orderBy('hari_id', 'asc')->orderBy('waktu_id', 'asc')
             ->where('type', $id)->get();
-            // ->paginate(15);
+        // ->paginate(15);
         return view('admin.genetic.print', compact('jadwals'));
         // ob_clean();
         // ob_start();
         // $pdf = PDF::loadview('admin.genetic.print',compact('jadwals'));
         // return $pdf->download('Print Jadwal.pdf');
-       
+
     }
 
-    public function exportAll()
+    public function exportAllXls()
     {
         ob_end_clean();
         ob_start();
@@ -141,11 +138,11 @@ class GenetikController extends Controller
         // ob_end_clean();
         // ob_start();
         // return Excel::download(new exportAll,'invoices.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        $jadwals      = Jadwal::orderBy('hari_id','asc')
+        $jadwals      = Jadwal::orderBy('hari_id', 'asc')
             ->orderBy('waktu_id', 'asc')
             ->orderBy('teach_id', 'asc')
             ->all();
-            // ->paginate(15);
+        // ->paginate(15);
         return view('admin.genetic.print', compact('jadwals'));
     }
 

@@ -8,20 +8,20 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class UploadJadwal implements ToModel, WithStartRow
 {
-    
+
     public function startRow(): int
     {
-        return (2);   
+        return (7);
     }
-    
+
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
-        
+
         return new Upload([
             //
             'hari'              => $row[0],

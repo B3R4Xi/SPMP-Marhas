@@ -4,7 +4,7 @@
   @section('content')    
 <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 col-md-3 col-sm-3">
+      <div class="col-lg-9 col-md-3 col-sm-3">
         <div class="card card-stats">
           <div class="card-header card-header-primary card-header-icon">
             <div class="card-icon">
@@ -12,6 +12,23 @@
             </div>
             <p class="card-category">Jadwal Hasil Generate</p>
             <h3 class="card-title">{{ $jadwal }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-info">visibility</i>
+              <a href="{{ url('/genetika/result/1') }}" class="ahref" >Lihat Jadwal...</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="card card-stats">
+          <div class="card-header card-header-secondary card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">person</i>
+            </div>
+            <p class="card-category">Data Pengampu</p>
+            <h3 class="card-title">{{ $teach }}</h3>
           </div>
           <div class="card-footer">
             <div class="stats">
