@@ -41,24 +41,22 @@
                         </tr>
                     </thead>
                     <tbody id="valueSearch">
-                    
                         @foreach($waktu as $t => $t_value)
                         <tr>
                             <td>{{$t_value->range}}</td>
                             @foreach($hari as $d)
                                     <td align="center">
-
                                         @if ( isset($jadwals [$t_value->range][$d->nama_hari]) )
                                             @foreach($jadwals [$t_value->range][$d->nama_hari] as $value_jadwal)
                                                 <b> {{ $value_jadwal }} </b><br>
                                             @endforeach
                                         @else
-                                            -
-                                        @endif                                 
+                                            <p style="color:green;">Slot Time Free</p>
+                                        @endif
                                     </td>
                             @endforeach
                         </tr>
-                        @endforeach    
+                        @endforeach
                     </tbody>
                 </table>
         </div>

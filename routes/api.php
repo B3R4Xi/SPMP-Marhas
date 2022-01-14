@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\GenetikController;
+use App\Http\Controllers\APIcontroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/showClassApi/{id}', [APIcontroller::class, 'showClassesApi']);
+Route::get('/getApiHari', [APIcontroller::class, 'getApiHari']);
+Route::get('/getApiWaktu', [APIcontroller::class, 'getApiWaktu']);

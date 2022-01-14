@@ -10,13 +10,13 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-     $this->middleware('admin');
-     $this->middleware('auth'); 
+        $this->middleware('auth');
+        // $this->middleware('admin');
     }
-    
+
     public function index()
     {
         $users = User::get();
-        return view('admin.profile',compact('users'));
+        return view('admin.profile', compact('users'));
     }
 }

@@ -5,6 +5,16 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                @if(session('success'))
+                    <div class="container" style="overflow-x: auto;">
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </div>
+                    </div>
+                @endif
                 <div class="col-md-12">
                     <div class="float-right mb-5">
                         <a href="{{ route('management.create') }}" class="btn btn-success btn-lg btn-fab btn-round">
@@ -43,7 +53,7 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <a href=""
+                                                <a href="{{route('management.edit', $dt->id)}}"
                                                     class="btn btn-warning btn-fab btn-round">
                                                     <i class="material-icons" style="color: white">edit</i>
                                                 </a>

@@ -1,7 +1,7 @@
 @extends('_component.master_apps')
 @if (Auth::user()->level_id === 1)
   @section('title', 'Dashboard - Admin')
-  @section('content')    
+  @section('content')
 <div class="container-fluid">
     <div class="row">
       <div class="col-lg-9 col-md-3 col-sm-3">
@@ -33,7 +33,7 @@
           <div class="card-footer">
             <div class="stats">
               <i class="material-icons text-info">visibility</i>
-              <a href="{{ url('/genetika/result/1') }}" class="ahref" >Lihat Jadwal...</a>
+              <a href="{{ url('/teach') }}" class="ahref" >Lihat Data Pengampu...</a>
             </div>
           </div>
         </div>
@@ -112,10 +112,10 @@
 @endsection
 @else
   @section('title', 'Dashboard - Guru')
-  @section('content')    
+  @section('content')
 <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 col-md-3 col-sm-3">
+      {{-- <div class="col-lg-12 col-md-3 col-sm-3">
         <div class="card card-stats">
           <div class="card-header card-header-primary card-header-icon">
             <div class="card-icon">
@@ -127,7 +127,24 @@
           <div class="card-footer">
             <div class="stats">
               <i class="material-icons text-info">visibility</i>
-              <a href="{{ url('/genetika/result/1') }}" class="ahref" >Lihat Jadwal...</a>
+              <a href="{{ url('/genetika/showClass/1') }}" class="ahref" >Lihat Jadwal...</a>
+            </div>
+          </div>
+        </div>
+      </div> --}}
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="card card-stats">
+          <div class="card-header card-header-secondary card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">person</i>
+            </div>
+            <p class="card-category">Data Pengampu</p>
+            <h3 class="card-title">{{ $teach }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-info">visibility</i>
+              <a href="{{ url('/teach') }}" class="ahref" >Lihat Data Pengampu...</a>
             </div>
           </div>
         </div>

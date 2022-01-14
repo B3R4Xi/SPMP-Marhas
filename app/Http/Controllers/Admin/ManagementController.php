@@ -14,10 +14,9 @@ class ManagementController extends Controller
 {
     public function __construct()
     {
-     $this->middleware('admin')->only('delete');
-     $this->middleware('auth'); 
+        $this->middleware('admin')->only('delete');
+        $this->middleware('auth');
     }
-    
     /**
      * Display a listing of the resource.
      *
@@ -39,9 +38,9 @@ class ManagementController extends Controller
     public function create()
     {
         //
-        $guru   = Guru::orderBy('nama_lengkap','asc')->pluck('nama_lengkap', 'id');
-        $level  = Level::orderBy('level', 'asc')->pluck('level','id');
-        return view('admin.management.tambahUser', compact('level','guru'));
+        $guru   = Guru::orderBy('nama_lengkap', 'asc')->pluck('nama_lengkap', 'id');
+        $level  = Level::orderBy('level', 'asc')->pluck('level', 'id');
+        return view('admin.management.tambahUser', compact('level', 'guru'));
     }
 
 
@@ -83,26 +82,26 @@ class ManagementController extends Controller
             'no_hp'             => 'required',
             'password'           => 'required',
             'conf-password'      => 'required',
-        ],[
-            'nama_.required'             => 'Data wajib diisi!', 
+        ], [
+            'nama_.required'             => 'Data wajib diisi!',
             'email_.required'            => 'Data wajib diisi!',
             'alamat_.required'           => 'Data wajib diisi!',
             'no_hp_.required'            => 'Data wajib diisi!',
-            'password.required'         => 'Data wajib diisi!',    
+            'password.required'         => 'Data wajib diisi!',
         ]);
-        
+
         $users = new User();
-        $users->name=$request->input('nama_');
-        $users->email=$request->input('email');
-        $users->alamat=$request->input('alamat');
-        $users->no_hp=$request->input('nohp');
-        $users->password=Hash::make($request->input('password'));
-        $users->level_id=$request->input('level');
-        // $users->save();
+        $users->name = $request->input('nama_');
+        $users->email = $request->input('email');
+        $users->alamat = $request->input('alamat');
+        $users->no_hp = $request->input('no_hp');
+        $users->password = Hash::make($request->input('password'));
+        $users->level_id = $request->input('level');
+        $users->save();
         // echo $users;exit;
-        dd($users);
+        // dd($users);
         // return response()->json($users);
-        // return redirect()->route('management.index')->with('success', 'Tambah User Berhasil');
+        return redirect()->route('management.index')->with('success', 'Tambah User Berhasil');
     }
 
     /**
@@ -124,7 +123,12 @@ class ManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::where('id', $id)->get();
+        $guru   = Guru::orderBy('nama_lengkap', 'asc')->pluck('nama_lengkap', 'id');
+        $level  = Level::orderBy('level', 'asc')->pluck('level', 'id');
+
+
+        return view('admin.management.editUser', compact('users', 'guru', 'level'));
     }
 
     /**

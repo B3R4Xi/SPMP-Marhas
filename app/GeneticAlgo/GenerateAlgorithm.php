@@ -2,6 +2,7 @@
 
 namespace app\GeneticAlgo;
 
+use App\Http\Controllers\Admin\Timenotavailble;
 use App\Models\Teach;
 use App\Models\Hari;
 use App\Models\Jadwal;
@@ -49,7 +50,7 @@ class GenerateAlgorithm
             ->where('type', '=', $type)
             ->first();
 
-        //filter kondisi agar 1 kelas tidak memiliki hari dan waktu yang sama 2 kali
+        //filter kondisi agar 1 ruangan tidak memiliki hari dan waktu yang sama 2 kali
         $check_kelas_id = Jadwal::where('lab_id', '=', $lab->id)
             ->where('hari_id', '=', $hari->id)
             ->where('waktu_id', '=', $waktu->id)
@@ -57,15 +58,21 @@ class GenerateAlgorithm
             ->first();
         // dd($check_kelas_id);
 
+        //kondisi untuk guru yang ditadak mengajar diwaktu tertentu
+        $check_timenotavailable = Timenotavailable::where('guru_id', '=', $teach->id_guru)
+            ->where('hari_id', '=', $hari->id)
+            ->where('waktu_id', '=', $waktu->id)
+            ->first();
+
         if ($check_teach_id) {
             return $this->prosesRandoming($i, $input_tahun, $input_semester);
         } else if ($check_guru_id) {
             return $this->prosesRandoming($i, $input_tahun, $input_semester);
-        }
-        else if ($check_kelas_id) {
+        } else if ($check_kelas_id) {
             return $this->prosesRandoming($i, $input_tahun, $input_semester);
-        }
-        else {
+        } else if ($check_timenotavailable) {
+            return $this->prosesRandoming($i, $input_tahun, $input_semester);
+        } else {
             $jadwal = Jadwal::create($params);
             return $jadwal;
         }

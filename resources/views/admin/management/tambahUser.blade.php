@@ -30,7 +30,6 @@
                                     @endif
                                 </div>
                             </div>
-                            
                             {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Email</label>
@@ -65,7 +64,6 @@
                                     @endif
                                 </div>
                             </div>
-                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="">Nomor Handphone</label>

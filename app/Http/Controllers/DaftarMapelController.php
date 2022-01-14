@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\DaftarMapelModel;
 
 use Illuminate\Http\Request;
@@ -9,8 +10,8 @@ class DaftarMapelController extends Controller
 {
     public function index()
     {
-        $data=DaftarMapelModel::all();
-        return view('admin.daftar-mapel', ['mapel'=>$data]);
+        $data = DaftarMapelModel::all();
+        return view('admin.daftar-mapel', ['mapel' => $data]);
     }
 
     public function add()
@@ -24,7 +25,7 @@ class DaftarMapelController extends Controller
             'kode_mapel' => 'required|unique:tbl_mapel,kode_mapel|max:255',
             'nama_mapel' => 'required',
             'tingkat_mapel' => 'required',
-        ],[
+        ], [
             'kode_mapel.required' => 'Data wajib diisi!',
             'nama_mapel.required' => 'Data wajib diisi!',
             'tingkat_mapel.required' => 'Data wajib diisi!'
@@ -32,8 +33,8 @@ class DaftarMapelController extends Controller
 
         DaftarMapelModel::create($mapel);
 
-        return redirect('/daftarmapel')->with('success',"Data berhasil ditambahkan !")
-        ->with('failed','Gagal gan !');
+        return redirect('/daftarmapel')->with('success', "Data berhasil ditambahkan !")
+            ->with('failed', 'Gagal gan !');
     }
 
     // public function delete($id_mapel)
@@ -42,7 +43,6 @@ class DaftarMapelController extends Controller
     //     $mapel->delete();
     //     return redirect()->back();
     // }
-    
 
     // public function edit(Request $request, $id_mapel)
     // {
@@ -59,5 +59,4 @@ class DaftarMapelController extends Controller
         $data = DaftarMapelModel::find($id_mapel);
         return response()->json($data);
     }
-
 }

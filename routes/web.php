@@ -58,6 +58,15 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('timedays', TimedaysController::class);
     Route::resource('genetika', GenetikController::class);
 
+
+
+    //excel all jadwal
+    Route::get('genetika/export/exportAll', [GenetikController::class, 'exportAll'])->name('admin.genetic.exportAll');
+    Route::get('genetika/export/exportPDFAll', [GenetikController::class, 'exportPDFAll'])->name('admin.genetic.exportAllPDF');
+    //excel jadwal
+    Route::get('genetika/export/{id}', [GenetikController::class, 'export'])->name('admin.genetic.export');
+    Route::get('genetika/exportPDF/{id}', [GenetikController::class, 'exportPDF'])->name('admin.genetic.exportPDF');
+
     Route::get('upload', [UploadJadwal::class, 'index'])->name('upload.index');
     Route::post('/upload/jadwal', [UploadJadwal::class, 'ImportJadwal'])->name('upload.jadwal');
 });
@@ -87,12 +96,7 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/teach/create/getKelas/{id}', [TeachController::class, 'getKelas']);
 Route::get('/teach/create/getMapel/{id}', [TeachController::class, 'getMapel']);
 Route::get('/teach/id/edit/getMapel/{id}', [TeachController::class, 'getMapel']);
-//excel all jadwal
-Route::get('genetika/exportAll', [GenetikController::class, 'exportAllXls'])->name('admin.genetic.exportAll');
-Route::get('genetika/exportPDF', [GenetikController::class, 'exportAllPDF'])->name('admin.genetic.exportAllPDF');
-//excel jadwal
-Route::get('genetika/export/{id}', [GenetikController::class, 'export'])->name('admin.genetic.export');
-Route::get('genetika/exportPDF/{id}', [GenetikController::class, 'exportPDF'])->name('admin.genetic.exportPDF');
+
 
 Route::get('genetika/result/{id}', [GenetikController::class, 'result'])->name('admin.genetic.result');
 Route::get('genetika/showClass/{id}', [GenetikController::class, 'showClasses'])->name('admin.genetic.showClass');

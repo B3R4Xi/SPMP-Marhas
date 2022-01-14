@@ -25,7 +25,6 @@
     <div class="card">
         <div class="card-body">
             <form action="{{ route('admin.genetic.submit') }}" method="get">
-                
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -53,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom</label>
+                            <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom (1 - 5)</label>
                             <input class="select-text form-control"  name="kromosom" required>
                                 {{-- <option value="" disabled selected>Nilai Kromosom</option>
                                 <option value="1">1</option>
@@ -66,7 +65,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi</label>
+                            <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi (1 - 5)</label>
                             <input class="select-text form-control"  name="generasi" required>
                                 {{-- <option value="" disabled selected>Nilai Generasi</option>
                                 <option value="1">1</option>
