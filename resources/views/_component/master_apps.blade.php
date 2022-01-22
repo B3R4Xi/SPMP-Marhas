@@ -18,6 +18,7 @@
     {{-- <link href="{{ asset('template') }}/assets/css/animateload.css" rel="stylesheet" /> --}}
     {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css"> --}}
     {{-- JS --}}
+    @laravelPWA
 </head>
 
 <body class="">

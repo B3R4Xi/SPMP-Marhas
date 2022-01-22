@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                                    <label class="bmd-label-floating">Jumlah Jam Mapel</label>
+                                    <label class="bmd-label-floating">Jumlah Jam</label>
                                     <input class="select-text form-control"  name="jumlah_jam" type="text">
                                 @if($errors->has('jumlah_jam'))
                                     <span
@@ -92,7 +92,7 @@
                                   @endif--}}
                                     <label class="select-label">Jenis Mapel</label>
                                     <select class="select-text form-control"  name="jenis_mapel_id">
-                                        <option value="" disabled selected>Pilih Jenis Mapel</option>
+                                        <option value="" disabled selected>Pilih</option>
                                         @foreach ($jenis_mapel as $jenis_mapel => $data)
                                         <option value="{{ $jenis_mapel }}">{{ $data }}</option>
                                         @endforeach

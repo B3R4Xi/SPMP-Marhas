@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom (1 - 5)</label>
+                            <label class="bmd-label-floating">Masukan Nilai Pembangkit Kromosom (1-5)</label>
                             <input class="select-text form-control"  name="kromosom" required>
                                 {{-- <option value="" disabled selected>Nilai Kromosom</option>
                                 <option value="1">1</option>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi (1 - 5)</label>
+                            <label class="bmd-label-floating">Masukan Nilai Maksimal Generasi (1-5)</label>
                             <input class="select-text form-control"  name="generasi" required>
                                 {{-- <option value="" disabled selected>Nilai Generasi</option>
                                 <option value="1">1</option>
@@ -138,6 +138,6 @@
             {{-- {{$timedays->links()}} --}}
             </nav>
         </div>
-    </div> --}}
+    </div>
 </div>
 @endsection
