@@ -45,7 +45,7 @@
                 <div class="col-md-4" style="padding-bottom: 3%; padding-left:3%;">
                     @if(!empty($data_kromosom))
                         <label class="bmd-label-floating">Pilih Jadwal</label>
-                        <select class="form-control select2" id="myAction">
+                        <select class="form-control select2" id="myAction" name="box1">
                         @foreach ($data_kromosom as $key => $kromosom)
                             <option value="{{ $key+1 }}"
                             @if ($id == ($key+1))
@@ -64,28 +64,28 @@
                         </select>
                     @endif
                     @if(!empty($data_kromosom))
-                <ul class="nav nav-tabs nav-justified">
-                    @foreach ($data_kromosom as $key => $kromosom)
-                        @if ($id == ($key+1))
-                            <li class="bg-primary">
-                        @else
-                            <li>
-                        @endif
-                                <a href="{{ Route('admin.genetic.showClass', $key+1) }}">
-                                    {{-- @if ($kromosom['value_jadwals'] == 1)
-                                        Jadwal Terbaik
-                                    @else --}}
-                                        Lihat Jadwal {{ $key+1 }}
-                                    {{-- @endif --}}
-                                </a>
-                            </li>
-                    @endforeach
-                </ul>
-                @endif
+                    <ul class="nav ">
+                        @foreach ($data_kromosom as $key => $kromosom)
+                            @if ($id == ($key+1))
+                                <li class="bg-primary">
+                            @else
+                                <li>
+                            @endif
+                                    <a href="{{ Route('admin.genetic.showClass', $key+1) }}">
+                                        {{-- @if ($kromosom['value_jadwals'] == 1)
+                                            Jadwal Terbaik
+                                        @else --}}
+                                            Lihat Jadwal {{ $key+1 }} &nbsp;&nbsp; 
+                                        {{-- @endif --}}
+                                    </a>
+                                </li> 
+                        @endforeach
+                    </ul>
+                    @endif
                 </div>
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="padding-bottom: 3%;">
-                    <label class="bmd-label-floating">Export Jadwal Berdasarkan Type</label>
+                    <label class="bmd-label-floating">Export Jadwal Berdasarkan Type</label> <br>
                     <a class="btn btn-info btn-sm" href="{{ route('admin.genetic.export', $id) }}">
                         <i class="material-icons">
                             file_download
@@ -98,18 +98,18 @@
                         </i>
                         Export Jadwal PDF
                     </a>
-                    <label class="bmd-label-floating">Export Jadwal Semua Jenis Jadwal</label>
+                    <label class="bmd-label-floating">Export Jadwal Semua Jenis Jadwal</label> <br>
                     <a class="btn btn-info btn-sm" href="{{ route('admin.genetic.exportAll') }}">
                         <i class="material-icons">
                             file_download
                         </i>
-                        Export Semua Jadwal
+                        Export Semua XLS
                     </a>
                     <a class="btn btn-danger btn-sm" href="{{ route('admin.genetic.exportAllPDF') }}">
                         <i class="material-icons">
                             file_download
                         </i>
-                        Export Semua Jadwal PDF
+                        Export Semua PDF
                     </a>
                 </div>
 
@@ -134,3 +134,22 @@
     </div>
 </div>
 @endsection
+<script>
+                
+
+        // function cekLink(){
+        //     var select = document.getElementById('myAction');
+        //     var input = document.getElementById('txtlink');
+        //     select.onChange = function(){
+        //         input.value = select.value;
+        //     }
+        // }
+
+
+        // function selectElement(id, valueToSelect) {    
+        //     let element = document.getElementById('myAction');
+        //     element.value = valueToSelect;
+        //     console.log('element');
+        // }
+        
+</script>
