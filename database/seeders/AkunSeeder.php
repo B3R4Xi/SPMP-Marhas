@@ -22,7 +22,6 @@ class AkunSeeder extends Seeder
                 'email'     => 'admin@mail.com',
                 'password'   => bcrypt('12345678'),
                 'level_id'     => '1',
-
             ]
         ];
         foreach ($users as $key => $value) {
