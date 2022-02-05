@@ -21,7 +21,7 @@ class AkunSeeder extends Seeder
                 'name'      => 'admin',
                 'email'     => 'admin@mail.com',
                 'password'   => bcrypt('12345678'),
-                'level'     => '1',
+                'level_id'     => '1',
             
             ]
             ];
