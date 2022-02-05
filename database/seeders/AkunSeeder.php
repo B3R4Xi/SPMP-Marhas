@@ -24,7 +24,6 @@ class AkunSeeder extends Seeder
                 'no_hp'     => '0899',
                 'password'   => bcrypt('12345678'),
                 'level_id'     => '1',
-
             ]
         ];
         foreach ($users as $key => $value) {
