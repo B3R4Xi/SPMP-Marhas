@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Semester;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            // LevelSeeder::class,
+            // AkunSeeder::class,
+            // HariSeeder::class,
+            // TingkatSeeder::class,
+            JenisMatpelSeeder::class,
+            SemesterSeeder::class,
+            KelasSeeder::class,
+            LabSeeder::class,
+            HariSeeder::class,
+            WaktuSeeder::class,
+            GuruSeeder::class,
+            MatpelSeeder::class,
+        ]);
     }
 }
