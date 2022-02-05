@@ -25,7 +25,6 @@
     <div class="card">
         <div class="card-body">
             <form action="{{ route('admin.genetic.submit') }}" method="get">
-                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
