@@ -11,23 +11,24 @@
                 </div>
                 <div class="card-body">
                     @foreach ($users as $data)
-                        <form action="{{ route('management.store') }}" enctype="form-data" method="post" id="formInput">
+                        <form action="{{ route('management.update', $data->id) }}" enctype="form-data" method="post" id="formInput">
                             @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="">Nama Lengkap</label>
-                                        <select class="form-control" name="nama" id="nama">
+                                        <select class="form-control" name="name" id="name">
                                             <option value="">Pilih Nama Guru</option>
-                                            @foreach ($guru as $guru => $dt)
-                                                <option value="{{ $guru->id }}" {{$guru->id == $data->id ? 'selected' :''}}>
-                                                    {{ $guru }}
+                                            {{-- @foreach ($guru as $guru) --}}
+                                                <option value="{{ $data->name }}" {{$data->id == $data->id ? 'selected' :''}}>
+                                                    {{ $data->name }}
                                                 </option>
-                                            @endforeach
-                                            <input type="hidden" name="nama_" id="nama_" value=""/>
+                                            {{-- @endforeach --}}
+                                            {{-- <input type="hidden" name="nama_" id="nama_" value="{{$data->name}}"/> --}}
                                         </select>
-                                        @if($errors->has('nama_'))
-                                                    <span class="text-danger">{{ $errors->first('nama_') }}</span>
+                                        @if($errors->has('name'))
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -48,18 +49,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="">Email</label>
-                                        <input class="form-control" name="email" id="emailid_" readonly>
+                                        <input class="form-control" name="email" id="emailid_" readonly
+                                        value="{{ $data->email }}"/>
                                         {{-- </input> --}}
                                         {{-- <input type="text" name="alamat_" id="emailid_" value=""/> --}}
-                                        @if($errors->has('alamat_'))
-                                                    <span class="text-danger">{{ $errors->first('alamat_') }}</span>
+                                        @if($errors->has('emailid_'))
+                                                    <span class="text-danger">{{ $errors->first('emailid_') }}</span>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="">Alamat</label>
-                                        <input class="form-control" name="alamat" id="alamatid_" readonly/>
+                                        <input class="form-control" name="alamat" id="alamatid_" readonly
+                                        value="{{ $data->alamat }}"/>
                                         {{-- <input type="text" name="alamat_" id="alamatid_" value=""/> --}}
                                         @if($errors->has('alamat_'))
                                                     <span class="text-danger">{{ $errors->first('alamat_') }}</span>
@@ -70,7 +73,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="">Nomor Handphone</label>
-                                        <input class="form-control" name="no_hp" id="nohpid_" readonly>
+                                        <input class="form-control" name="no_hp" id="nohpid_" readonly value="{{ $data->no_hp }}"/>
                                         {{-- </input> --}}
                                         {{-- <input type="text" name="no_hp_" id="nohpid_" value=""/> --}}
                                         @if($errors->has('no_hp_'))
@@ -93,7 +96,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Confirmed Password</label>
-                                        <input type="password" class="form-control" name="conf-password">
+                                        <input type="password" class="form-control">
                                         @if($errors->has('conf-password'))
                                             <span
                                                 class="text-danger">{{ $errors->first('conf-password') }}</span>
@@ -105,11 +108,11 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating">Level</label>
-                                        <select class="form-control" name="level" id="level">
+                                        <select class="form-control" name="level_id" id="level_id">
                                             <option value="">Pilih Level</option>
-                                            @foreach ($level as $level => $dt)
-                                            <option value="{{ $level }}">
-                                                {{ $dt }}
+                                            @foreach ($level as $lvl)
+                                            <option value="{{ $lvl->id }}" {{$lvl->id == $data->level_id ? 'selected' : ''}}>
+                                                {{ $lvl->level }}
                                             </option>
                                             @endforeach
                                         </select>

@@ -77,9 +77,9 @@ class ManagementController extends Controller
         //
         $request->validate([
             'nama_'              => 'required|unique:tbl_users,name',
-            'email'             => 'required',
-            'alamat'            => 'required',
-            'no_hp'             => 'required',
+            'email'              => 'required',
+            'alamat'             => 'required',
+            'no_hp'              => 'required',
             'password'           => 'required',
             'conf-password'      => 'required',
         ], [
@@ -87,7 +87,7 @@ class ManagementController extends Controller
             'email_.required'            => 'Data wajib diisi!',
             'alamat_.required'           => 'Data wajib diisi!',
             'no_hp_.required'            => 'Data wajib diisi!',
-            'password.required'         => 'Data wajib diisi!',
+            'password.required'          => 'Data wajib diisi!',
         ]);
 
         $users = new User();
@@ -123,9 +123,11 @@ class ManagementController extends Controller
      */
     public function edit($id)
     {
-        $users = User::where('id', $id)->get();
-        $guru   = Guru::orderBy('nama_lengkap', 'asc')->pluck('nama_lengkap', 'id');
-        $level  = Level::orderBy('level', 'asc')->pluck('level', 'id');
+        $users  = User::where('id', $id)->get();
+        // dd($users);
+        $guru   = Guru::orderBy('nama_lengkap', 'asc')->get();
+        // dd($guru);
+        $level  = Level::orderBy('level', 'asc')->get();
 
 
         return view('admin.management.editUser', compact('users', 'guru', 'level'));
@@ -141,6 +143,42 @@ class ManagementController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'name'              => 'required',
+            'email'              => 'required',
+            'alamat'             => 'required',
+            'no_hp'              => 'required',
+            'password'           => 'required',
+            // 'conf-password'      => 'required',
+        ], [
+            'name.required'             => 'Data wajib diisi!',
+            'email_.required'            => 'Data wajib diisi!',
+            'alamat_.required'           => 'Data wajib diisi!',
+            'no_hp_.required'            => 'Data wajib diisi!',
+            'password.required'          => 'Data wajib diisi!',
+        ]);
+
+        // $users = new User();
+        // $users->name = $request->input('name');
+        // // dd(json_encode($users));
+        // $users->email = $request->input('email');
+        // $users->alamat = $request->input('alamat');
+        // $users->no_hp = $request->input('no_hp');
+        // $users->password = Hash::make($request->input('password'));
+        // $users->level_id = $request->input('level_id');
+        //
+        // dd($users);
+        $users = User::find($id)->update([
+            'name' => $request->input('name'),
+            // dd(json_encode($users));
+            'email' => $request->input('email'),
+            'alamat' => $request->input('alamat'),
+            'no_hp' => $request->input('no_hp'),
+            'password' => Hash::make($request->input('password')),
+            'level_id' => $request->input('level_id'),
+        ]);
+
+        return redirect()->route('management.index')->with('success', 'Update Berhasil !');
     }
 
     /**
@@ -152,5 +190,8 @@ class ManagementController extends Controller
     public function destroy($id)
     {
         //
+        $delete = User::where('id', $id)->firstOrFail();
+        $delete->delete();
+        return redirect()->back()->with('success', 'Delete Berhasil !');
     }
 }

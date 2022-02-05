@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <!-- CSS Files -->
     <link href="{{ asset('template') }}/assets/css/material-dashboard.min.css?v=2.2.1" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    @laravelPWA
 </head>
 
 <body class="">
@@ -23,13 +27,6 @@
         <div class="main-panel">
             <!-- Navbar -->
             @include('_component.navbar')
-            <!-- End Navbar -->
-            {{-- Content section --}}
-            {{-- <style>
-                .progress { position:relative; width:100%; height: 20px; }
-                .bar      { background-color: #008000; width:0%; height:20px; }
-                .percent { position:absolute; display:inline-block; left:49%; color: #7F98B2;}
-            </style> --}}
             <div class="content">
                     {{-- notifikasi form validasi --}}
                     @if ($errors->has('file'))
@@ -90,21 +87,18 @@
                     <div class="col-md-12">
                         <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Simple Table</h4>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
+                            <h4 class="card-title">Jadwal Pelajaran Produktif - RPL</h4>
+                            <form action="{{ route('upload.truncate') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                                <button class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?')">
+                                    <i class="material-icons" style="color: white">delete</i>
+                                Kosongkan Jadwal
+                            </form>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tabel-data">
                                 <thead class=" text-primary">
                                     <th>No</th>
                                     <th>Guru</th>
@@ -148,36 +142,15 @@
 <script src="{{ asset('template') }}/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
 <script src="{{ asset('template') }}/assets/js/plugins/bootstrap-selectpicker.js"></script>
 <script src="{{ asset('template') }}/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
-
-
-{{-- loading animate upload --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
-{{-- <script type="text/javascript">
-    $(function() {
-        $(document).ready(function()
-        {
-            var bar = $('.bar');
-            var percent = $('.');
-
-        $('#importExcel').ajaxForm({
-        beforeSend: function() {
-            var percentVal = '0%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        uploadProgress: function(event, position, total, percentComplete) {
-            var percentVal = percentComplete + '%';
-            bar.width(percentVal)
-            percent.html(percentVal);
-        },
-        complete: function(xhr) {
-            alert('Jadwal Berhasil Diupload !');
-            window.location.href = "/upload";
-        }
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#tabel-data').DataTable({
+      "language":{
+        "url":"http://cdn.datatables.net/plug-ins/1.10.9/i18n/Indonesian.json",
+      }
     });
-    });
-});
-</script> --}}
+	});
+</script>
 </body>
 
 </html>

@@ -41,7 +41,14 @@ class UploadJadwal extends Controller
         Excel::import(new ImportsUploadJadwal, public_path('/file_jadwal/' . $name_file));
 
         // Session::flash('sukses','Jadwal Berhasil Diupload!');
-        // return  redirect()->back()->with('sukses', 'Jadwal Berhasil DiUpload !');
-        return response()->json(['success' => 'File Uploaded Successfully']);
+        return  redirect()->back()->with('sukses', 'Jadwal Berhasil DiUpload !');
+        // return response()->json(['success' => 'File Uploaded Successfully']);
+    }
+
+    public function truncate()
+    {
+        $upload = Upload::truncate();
+        // $upload->query()->truncate
+        return  redirect()->back()->with('sukses', 'Jadwal Dihapus!');
     }
 }
