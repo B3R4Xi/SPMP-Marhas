@@ -15,12 +15,13 @@ use App\Http\Controllers\Admin\TeachController;
 use App\Http\Controllers\Admin\Timenotavailble;
 use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\UploadJadwal;
+use App\Http\Controllers\ViewJadwal;
 use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Support\Facades\Auth;
 
 // Route Auth
-// Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 // Route::post('/login',[LoginController::class, 'auth']);
 Auth::routes();
 //
@@ -69,6 +70,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('upload', [UploadJadwal::class, 'index'])->name('upload.index');
     Route::post('/upload/jadwal', [UploadJadwal::class, 'ImportJadwal'])->name('upload.jadwal');
+    Route::delete('upload/truncate', [UploadJadwal::class, 'truncate'])->name('upload.truncate');
 });
 
 Route::get('/', [HomeController::class, 'index']);
@@ -100,4 +102,5 @@ Route::get('/teach/id/edit/getMapel/{id}', [TeachController::class, 'getMapel'])
 
 Route::get('genetika/result/{id}', [GenetikController::class, 'result'])->name('admin.genetic.result');
 Route::get('genetika/showClass/{id}', [GenetikController::class, 'showClasses'])->name('admin.genetic.showClass');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/jadwal', [ViewJadwal::class, 'index'])->name('jadwal');

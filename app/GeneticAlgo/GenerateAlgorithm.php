@@ -20,13 +20,11 @@ class GenerateAlgorithm
         $teach = Teach::whereHas('mapel', function ($query) use ($input_semester) {
             $query->where('tbl_mapel.semester_id', $input_semester);
         });
-        // dd($teach);
         $hari   = Hari::inRandomOrder()->first();
         $teach  = $teach->where('tahun_ajaran', $input_tahun)->inRandomOrder()->first();
         $lab    = Lab::where('jenis_lab_id', $teach->mapel->jenis_mapel_id)->inRandomOrder()->first();
         $waktu  = Waktu::where('jumlah_jam', $teach->mapel->jumlah_jam)->inRandomOrder()->first();
         $type = $i + 1;
-        // echo json_encode($lab);exit;
         $params = [
             'teach_id'  => $teach->id,
             'hari_id'   => $hari->id,
