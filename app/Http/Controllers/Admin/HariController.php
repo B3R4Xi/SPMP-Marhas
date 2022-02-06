@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class HariController extends Controller
 {
-    
+
     public function __construct()
     {
-     $this->middleware('admin')->only('delete');
-     $this->middleware('auth'); 
+        $this->middleware('admin')->only('delete');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -26,12 +26,11 @@ class HariController extends Controller
         //
         // $data_hari   =   DB::table('tbl_hari')->count();
         $hari = Hari::orderBy('id');
-        if (!empty($request->search)) 
-        {
-            $hari = $hari->where('nama_hari', 'LIKE', '%' .$request->search. '%');
+        if (!empty($request->search)) {
+            $hari = $hari->where('nama_hari', 'LIKE', '%' . $request->search . '%');
         }
         $hari = $hari->paginate(4);
-        return view('admin.hari.daftarhari',compact('hari'));
+        return view('admin.hari.daftarHari', compact('hari'));
     }
 
     /**
@@ -57,18 +56,17 @@ class HariController extends Controller
         $request->validate([
             'kode_hari' => 'required|unique:tbl_hari',
             'nama_hari' => 'required',
-        ],[
+        ], [
             'kode_hari.required' => 'Data Wajib Diisi !',
             'nama_hari.required' => 'Data Wajib Diisi !',
         ]);
 
         $hari = new Hari();
-        $hari->kode_hari=$request->kode_hari;
-        $hari->nama_hari=$request->nama_hari;
+        $hari->kode_hari = $request->kode_hari;
+        $hari->nama_hari = $request->nama_hari;
         $hari->save();
-        return redirect()->route('hari.index')->with('success',"Data berhasil ditambahkan !")
-        ->with('failed','Gagal gan !');
-
+        return redirect()->route('hari.index')->with('success', "Data berhasil ditambahkan !")
+            ->with('failed', 'Gagal gan !');
     }
 
     /**
@@ -91,8 +89,8 @@ class HariController extends Controller
     public function edit($id)
     {
         //
-        $hari = Hari::where('id',$id)->get();
-        return view('admin.hari.updateDataHari',compact('hari'));
+        $hari = Hari::where('id', $id)->get();
+        return view('admin.hari.updateDataHari', compact('hari'));
     }
 
     /**
@@ -102,13 +100,13 @@ class HariController extends Controller
      * @param  \App\Models\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         //
         $request->validate([
-            'kode_hari'=>'required',
-            'nama_hari'=>'required',
-        ],[
+            'kode_hari' => 'required',
+            'nama_hari' => 'required',
+        ], [
             'kode_hari.required' => 'Data wajib diisi!',
             'nama_hari.required' => 'Data wajib diisi!',
         ]);
@@ -132,12 +130,11 @@ class HariController extends Controller
     public function destroy($id)
     {
         $timeday = Timeday::where('hari_id', $id)->first();
-        if (!empty($timeday)) 
-        {
+        if (!empty($timeday)) {
             return redirect()->route('timedays.index')->with('danger', 'Anda Harus Menghapus Data Waktu Dan Jam Terlebih Dahulu');
         } else {
             Hari::find($id)->delete();
         }
-            return redirect()->route('hari.index')->with('success', 'Hari berhasil dihapus');
+        return redirect()->route('hari.index')->with('success', 'Hari berhasil dihapus');
     }
 }
