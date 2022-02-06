@@ -93,7 +93,7 @@ class GenerateAlgorithm
     {
         $jadwals = Jadwal::join('tbl_teach', 'tbl_teach.id', '=', 'tbl_jadwal.teach_id')
             ->join('tbl_guru', 'tbl_guru.id', '=', 'tbl_teach.id_guru')
-            ->select(DB::raw('teach_id, hari_id, waktu_id, type, count(*) as jumlah'))
+            ->select(DB::raw('teach_id, hari_id, waktu_id, type, count(*) as `jumlah`'))
             ->groupBy('teach_id')
             ->groupBy('hari_id')
             ->groupBy('waktu_id')
@@ -103,7 +103,7 @@ class GenerateAlgorithm
 
         $hasil_jadwals = $this->increaseProccess($jadwals);
 
-        $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, waktu_id, type, count(*) as jumlah'))
+        $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, waktu_id, type, count(*) as `jumlah`'))
             ->groupBy('teach_id')
             ->groupBy('hari_id')
             ->groupBy('waktu_id')
@@ -113,7 +113,7 @@ class GenerateAlgorithm
 
         $hasil_jadwals = $this->increaseProccess($jadwals);
 
-        $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, lab_id, type, count(*) as jumlah'))
+        $jadwals =  Jadwal::select(DB::raw('teach_id, hari_id, lab_id, type, count(*) as `jumlah`'))
             ->groupBy('teach_id')
             ->groupBy('hari_id')
             ->groupBy('lab_id')
@@ -123,7 +123,7 @@ class GenerateAlgorithm
 
         $hasil_jadwals = $this->increaseProccess($jadwals);
 
-        $jadwals = Jadwal::select(DB::raw('waktu_id, hari_id, lab_id, type, count(*) as jumlah'))
+        $jadwals = Jadwal::select(DB::raw('waktu_id, hari_id, lab_id, type, count(*) as `jumlah`'))
             ->groupBy('waktu_id')
             ->groupBy('hari_id')
             ->groupBy('lab_id')
