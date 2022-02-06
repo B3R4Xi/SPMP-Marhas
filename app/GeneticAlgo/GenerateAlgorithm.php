@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Timenotavailble;
 use App\Models\Teach;
 use App\Models\Hari;
 use App\Models\Jadwal;
-use App\Models\lab;
+use App\Models\Lab;
 use App\Models\Waktu;
 use App\Models\Timenotavailable;
 // use DB;
