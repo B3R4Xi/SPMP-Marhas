@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class WaktuController extends Controller
 {
-    
+
     public function __construct()
     {
-     $this->middleware('admin')->only('delete');
-     $this->middleware('auth'); 
+        $this->middleware('admin')->only('delete');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -26,12 +26,11 @@ class WaktuController extends Controller
     {
         //
         $data = Waktu::orderBy('id');
-        if (!empty($request->search)) 
-        {
-            $data = $data->where('kode_waktu', 'LIKE', '%' .$request->search. '%');
+        if (!empty($request->search)) {
+            $data = $data->where('kode_waktu', 'LIKE', '%' . $request->search . '%');
         }
         $data = $data->paginate(4);
-        return view('admin.waktu.daftarwaktu',['waktu'=>$data]);
+        return view('admin.waktu.daftarWaktu', ['waktu' => $data]);
     }
 
     /**
@@ -60,24 +59,24 @@ class WaktuController extends Controller
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
             'jumlah_jam' => 'required',
-            
-        ],[
+
+        ], [
             'kode_waktu.required' => 'Data wajib diisi!',
             'waktu_mulai.required' => 'Data wajib diisi!',
             'waktu_selesai.required' => 'Data wajib diisi!',
             'jumlah_jam.required' => 'Data wajib diisi!',
-            
+
         ]);
 
         $waktu = new Waktu();
-        $waktu->kode_waktu=$request->kode_waktu;
-        $waktu->waktu_mulai=$request->waktu_mulai;
-        $waktu->waktu_selesai=$request->waktu_selesai;
-        $waktu->jumlah_jam=$request->jumlah_jam;
-        $waktu->range=$request->input('waktu_mulai'). " - " . $request->input('waktu_selesai');
+        $waktu->kode_waktu = $request->kode_waktu;
+        $waktu->waktu_mulai = $request->waktu_mulai;
+        $waktu->waktu_selesai = $request->waktu_selesai;
+        $waktu->jumlah_jam = $request->jumlah_jam;
+        $waktu->range = $request->input('waktu_mulai') . " - " . $request->input('waktu_selesai');
         $waktu->save();
-        return redirect()->route('waktu.index')->with('success',"Data berhasil ditambahkan !")
-        ->with('failed','Gagal gan !');
+        return redirect()->route('waktu.index')->with('success', "Data berhasil ditambahkan !")
+            ->with('failed', 'Gagal gan !');
     }
 
     /**
@@ -99,9 +98,9 @@ class WaktuController extends Controller
      */
     public function edit($id)
     {
-        $waktu=Waktu::where('id',$id)->get();
-        
-        return view('admin.waktu.updateDatakWaktu',compact('waktu'));  
+        $waktu = Waktu::where('id', $id)->get();
+
+        return view('admin.waktu.updateDatakWaktu', compact('waktu'));
     }
 
     /**
@@ -119,7 +118,7 @@ class WaktuController extends Controller
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
             'jumlah_jam' => 'required',
-        ],[
+        ], [
             'kode_waktu.required' => 'Data wajib diisi!',
             'waktu_mulai.required' => 'Data wajib diisi!',
             'waktu_selesai.required' => 'Data wajib diisi!',
@@ -136,9 +135,9 @@ class WaktuController extends Controller
         $waktu->waktu_selesai   = $waktu_selesai;
         $waktu->jumlah_jam   = $jumlah_jam;
         $waktu->range           = $range;
-        $waktu->save(); 
+        $waktu->save();
 
-        return redirect()->route('waktu.index')->with('success','Update Data Berhasil !');
+        return redirect()->route('waktu.index')->with('success', 'Update Data Berhasil !');
     }
 
     /**
@@ -152,13 +151,12 @@ class WaktuController extends Controller
         //
         {
             $timeday = Timeday::where('waktu_id', $id)->first();
-            if (!empty($timeday)) 
-            {
+            if (!empty($timeday)) {
                 return redirect()->route('timedays.index')->with('danger', 'Anda Harus Menghapus Data Waktu Dan Jam Terlebih Dahulu');
             } else {
                 Waktu::find($id)->delete();
             }
-                return redirect()->route('waktu.index')->with('success', 'Data Waktu berhasil dihapus');
+            return redirect()->route('waktu.index')->with('success', 'Data Waktu berhasil dihapus');
         }
     }
 }
